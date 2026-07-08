@@ -236,6 +236,24 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
 .summary-total-value{font-size:22px;font-weight:800;font-family:'DM Mono',monospace;background:linear-gradient(135deg,var(--o-700),var(--o-500));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-.02em}
 .summary-sub{font-size:9px;color:var(--s-400);margin-left:2px}
 
+/* PERFORMANCE BONUS (editable, summary) */
+.pb-block{padding:.35rem 0 .1rem}
+.pb-row{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.pb-left{display:flex;align-items:center;gap:.55rem;min-width:0}
+.pb-switch{width:34px;height:19px;border-radius:20px;background:var(--s-300);position:relative;cursor:pointer;transition:background .2s;flex-shrink:0;outline:none}
+.pb-switch:focus-visible{box-shadow:0 0 0 3px var(--o-200)}
+.pb-switch.on{background:var(--o-500)}
+.pb-knob{position:absolute;top:2px;left:2px;width:15px;height:15px;border-radius:50%;background:#fff;transition:transform .2s cubic-bezier(.34,1.56,.64,1);box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.pb-switch.on .pb-knob{transform:translateX(15px)}
+.pb-label{font-size:12px;color:var(--s-600);display:flex;align-items:center;gap:4px}
+.pb-amount{display:flex;align-items:center;gap:3px;border:1.5px solid var(--s-200);border-radius:var(--r-md);padding:4px 9px;transition:border-color .15s,box-shadow .15s,opacity .15s;background:var(--white);cursor:text}
+.pb-amount:focus-within{border-color:var(--o-400);box-shadow:0 0 0 3px var(--o-200)}
+.pb-amount.disabled{opacity:.45;background:var(--s-150);pointer-events:none}
+.pb-currency{font-size:12px;font-weight:700;color:var(--s-500);font-family:'DM Mono',monospace}
+.pb-input{width:60px;border:none;outline:none;background:transparent;text-align:right;font-family:'DM Mono',monospace;font-size:12.5px;font-weight:600;color:var(--s-900)}
+.pb-input::placeholder{color:var(--s-400)}
+.pb-hint{font-size:10px;color:var(--s-400);line-height:1.4;margin-top:.4rem}
+
 /* PLATFORM CREDIT (summary) */
 .credit-block{margin-top:.2rem}
 .credit-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.35rem}
@@ -479,9 +497,9 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
                 <span class="tip"><span class="tip-icon">?</span><span class="tip-box">To entice more tutors, you can be particular on the performance bonus amount</span></span>
                 <span class="bonus-tag">Tutor incentive</span>
               </span>
-              <span class="fv">¥50.00</span>
+              <span class="fv hero-bonus-val">¥50.00</span>
             </div>
-            <div class="fee-line subtotal"><span class="fk">Booking Fee</span><span class="fv">¥550.00</span></div>
+            <div class="fee-line subtotal"><span class="fk">Booking Fee</span><span class="fv hero-sub-val">¥550.00</span></div>
             <div class="credit-hint">
               <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
               <span><strong>¥120.00</strong> platform credit available — apply it in the summary to reduce your total.</span>
@@ -556,9 +574,9 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
                 <span class="tip"><span class="tip-icon">?</span><span class="tip-box">To entice more tutors, you can be particular on the performance bonus amount</span></span>
                 <span class="bonus-tag">Tutor incentive</span>
               </span>
-              <span class="fv">¥100.00</span>
+              <span class="fv hero-bonus-val">¥100.00</span>
             </div>
-            <div class="fee-line subtotal"><span class="fk">Total Booking Fee</span><span class="fv">¥1,500.00</span></div>
+            <div class="fee-line subtotal"><span class="fk">Total Booking Fee</span><span class="fv hero-sub-val">¥1,500.00</span></div>
             <div class="fee-note">
               <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
               Last minute fee is charged for deadlines less than 72 hours.
@@ -617,9 +635,9 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
                 <span class="tip"><span class="tip-icon">?</span><span class="tip-box">To entice more tutors, you can be particular on the performance bonus amount</span></span>
                 <span class="bonus-tag">Tutor incentive</span>
               </span>
-              <span class="fv">¥200.00</span>
+              <span class="fv hero-bonus-val">¥200.00</span>
             </div>
-            <div class="fee-line subtotal"><span class="fk">Booking Fee</span><span class="fv">¥4,000.00</span></div>
+            <div class="fee-line subtotal"><span class="fk">Booking Fee</span><span class="fv hero-sub-val">¥4,000.00</span></div>
             <div class="credit-hint">
               <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
               <span><strong>¥120.00</strong> platform credit available — apply it in the summary to reduce your total.</span>
@@ -879,12 +897,22 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
               <span class="summary-label">Last-minute fees</span>
               <span class="summary-value" id="sum-lastmin-val">¥0.00</span>
             </div>
-            <div class="summary-row">
-              <span class="summary-label">
-                Performance Bonus
-                <div class="tip"><div class="tip-icon">?</div><div class="tip-box">To entice more tutors, you can be particular on the performance bonus amount</div></div>
-              </span>
-              <span class="summary-value" id="sum-bonus-val">¥50.00</span>
+            <!-- PERFORMANCE BONUS (editable at checkout) -->
+            <div class="pb-block">
+              <div class="pb-row">
+                <span class="pb-left">
+                  <span class="pb-switch on" id="bonus-switch" role="switch" aria-checked="true" tabindex="0" onclick="toggleBonus()" onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();toggleBonus()}"><span class="pb-knob"></span></span>
+                  <span class="pb-label">
+                    Performance Bonus
+                    <div class="tip"><div class="tip-icon">?</div><div class="tip-box">To entice more tutors, you can be particular on the performance bonus amount</div></div>
+                  </span>
+                </span>
+                <span class="pb-amount" id="bonus-amount-wrap" onclick="document.getElementById('bonus-input').focus()">
+                  <span class="pb-currency">¥</span>
+                  <input class="pb-input" id="bonus-input" type="text" inputmode="decimal" value="50.00" autocomplete="off" oninput="onBonusInput(this)" onblur="onBonusBlur()"/>
+                </span>
+              </div>
+              <div class="pb-hint">Set the bonus you'd like to offer to entice more tutors to take this booking.</div>
             </div>
             <div class="summary-row" id="sum-discount-row" style="display:none">
               <span class="summary-label" style="color:var(--green)">Promo (SAVE10)</span>
@@ -1259,12 +1287,18 @@ let couponApplied = false;
 let creditApplied = 0;         // amount of platform credit applied
 let currentPM = 'card';
 
+// ── PERFORMANCE BONUS (set here at checkout, not on the create-booking page) ──
+let bonusEnabled = true;
+let bonusAmount = ORDERS.session.performanceBonus;  // suggested starting amount
+
 function fmt(n){ return '¥' + Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+
+function bonusValue(){ return bonusEnabled ? bonusAmount : 0; }
 
 // ── CORE: compute the payable total for the active order ──
 function subtotal(){
   const o = ORDERS[currentOrder];
-  return o.baseFee + o.lastMinute + o.performanceBonus;
+  return o.baseFee + o.lastMinute + bonusValue();
 }
 function promoDiscount(){
   return couponApplied ? Math.round(subtotal() * 0.1) : 0;
@@ -1280,11 +1314,29 @@ function render(){
   // summary line items
   document.getElementById('sum-item-label').textContent = o.baseLabel;
   document.getElementById('sum-base-val').textContent = fmt(o.baseFee);
-  document.getElementById('sum-bonus-val').textContent = fmt(o.performanceBonus);
 
   const lmRow = document.getElementById('sum-lastmin-row');
   if (o.lastMinute > 0){ lmRow.style.display='flex'; document.getElementById('sum-lastmin-val').textContent = fmt(o.lastMinute); }
   else { lmRow.style.display='none'; }
+
+  // performance bonus control (editable)
+  const sw = document.getElementById('bonus-switch');
+  const wrap = document.getElementById('bonus-amount-wrap');
+  const input = document.getElementById('bonus-input');
+  sw.classList.toggle('on', bonusEnabled);
+  sw.setAttribute('aria-checked', bonusEnabled ? 'true' : 'false');
+  wrap.classList.toggle('disabled', !bonusEnabled);
+  input.disabled = !bonusEnabled;
+  if (document.activeElement !== input){ input.value = bonusAmount.toFixed(2); }
+
+  // reflect the live bonus into the active hero card's breakdown
+  const hero = document.getElementById('od-'+currentOrder);
+  if (hero){
+    const bv = hero.querySelector('.hero-bonus-val');
+    const sv = hero.querySelector('.hero-sub-val');
+    if (bv) bv.textContent = fmt(bonusValue());
+    if (sv) sv.textContent = fmt(o.baseFee + o.lastMinute + bonusValue());
+  }
 
   // promo row
   const promo = promoDiscount();
@@ -1346,6 +1398,10 @@ function switchOrder(type, btn){
   couponApplied = false;
   creditApplied = 0;
 
+  // reset performance bonus to this order's suggested amount
+  bonusEnabled = true;
+  bonusAmount = ORDERS[type].performanceBonus;
+
   document.querySelectorAll('.demo-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
 
@@ -1362,6 +1418,30 @@ function switchOrder(type, btn){
   document.getElementById('credit-select').value = '0';
 
   render();
+}
+
+// ── PERFORMANCE BONUS (editable) ──
+function toggleBonus(){
+  bonusEnabled = !bonusEnabled;
+  onCreditChange();  // re-cap platform credit against the new total, then render()
+}
+
+function onBonusInput(el){
+  // keep digits + a single decimal point, max 2 decimal places
+  let v = el.value.replace(/[^0-9.]/g,'');
+  const parts = v.split('.');
+  if (parts.length > 2) v = parts[0] + '.' + parts.slice(1).join('');
+  if (v.includes('.')){ const [a,b] = v.split('.'); v = a + '.' + b.substring(0,2); }
+  el.value = v;
+  bonusAmount = parseFloat(v) || 0;
+  onCreditChange();  // recompute totals live (won't clobber input while focused)
+}
+
+function onBonusBlur(){
+  const input = document.getElementById('bonus-input');
+  bonusAmount = parseFloat(input.value) || 0;
+  input.value = bonusAmount.toFixed(2);  // normalise to 2 dp on blur
+  onCreditChange();
 }
 
 // ── PAY BUTTON label + style ──
