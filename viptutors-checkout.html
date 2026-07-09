@@ -44,6 +44,9 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
 .demo-btn{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;border:1.5px solid var(--s-600);color:var(--s-300);background:transparent;font-family:'DM Sans',sans-serif;transition:all .15s}
 .demo-btn:hover{border-color:var(--o-400);color:var(--o-400)}
 .demo-btn.active{background:var(--o-500);border-color:var(--o-500);color:#fff}
+.demo-btn.decline:hover{border-color:#f87171;color:#f87171}
+.demo-btn.decline.active{background:#dc2626;border-color:#dc2626;color:#fff}
+.demo-sep{width:1px;height:18px;background:var(--s-600);margin:0 .3rem}
 
 /* MAIN CONTENT */
 .checkout-body{flex:1;padding:2rem;display:flex;justify-content:center;background:radial-gradient(1100px 520px at 50% -160px,rgba(249,115,22,.07),transparent 62%),radial-gradient(900px 460px at 100% 4%,rgba(124,58,237,.05),transparent 58%)}
@@ -358,6 +361,25 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
 .btn-done{padding:10px 28px;border-radius:var(--r-md);background:var(--o-500);color:#fff;font-weight:800;font-size:13px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s}
 .btn-done:hover{background:var(--o-700)}
 
+/* FAILURE MODAL */
+.fail-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.6);z-index:115;align-items:center;justify-content:center;backdrop-filter:blur(4px);padding:1rem}
+.fail-overlay.show{display:flex}
+.fail-modal{background:var(--white);border-radius:var(--r-xl);padding:2.25rem 2rem 1.75rem;max-width:410px;width:90%;text-align:center;box-shadow:var(--sh-lg);animation:modalIn .25s ease}
+.fail-icon{width:60px;height:60px;background:var(--red-bg);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;border:3px solid var(--red-border);animation:failPulse .4s ease}
+@keyframes failPulse{0%{transform:scale(.7);opacity:0}60%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+.fail-icon svg{width:26px;height:26px;stroke:var(--red);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.fail-title{font-size:18px;font-weight:800;color:var(--s-900);margin-bottom:.35rem}
+.fail-sub{font-size:12.5px;color:var(--s-600);line-height:1.55;margin-bottom:1rem}
+.fail-tips{text-align:left;background:var(--s-100);border:1px solid var(--s-200);border-radius:var(--r-md);padding:.75rem .9rem;margin-bottom:1rem}
+.fail-tip-title{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--s-500);margin-bottom:.4rem}
+.fail-tips ul{margin:0;padding-left:1.05rem}
+.fail-tips li{font-size:11.5px;color:var(--s-600);line-height:1.6}
+.fail-code{font-size:10px;font-family:'DM Mono',monospace;color:var(--s-400);background:var(--s-150);padding:4px 10px;border-radius:5px;display:inline-block;margin-bottom:1.1rem}
+.btn-retry{padding:11px 30px;border-radius:var(--r-md);background:var(--o-500);color:#fff;font-weight:800;font-size:13px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;box-shadow:0 6px 18px rgba(249,115,22,.28)}
+.btn-retry:hover{background:var(--o-700);transform:translateY(-1px);box-shadow:0 10px 26px rgba(249,115,22,.38)}
+.fail-link{background:none;border:none;font-size:11.5px;color:var(--s-500);cursor:pointer;font-family:'DM Sans',sans-serif;padding:.25rem;text-decoration:none}
+.fail-link:hover{color:var(--o-700);text-decoration:underline}
+
 /* QR PAYMENT MODAL */
 .qr-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,.65);z-index:120;align-items:center;justify-content:center;backdrop-filter:blur(5px);padding:1rem}
 .qr-overlay.show{display:flex}
@@ -424,6 +446,10 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
     <button class="demo-btn active" onclick="switchOrder('session',this)">🌐 Online Session</button>
     <button class="demo-btn" onclick="switchOrder('editing',this)">✏️ Editing</button>
     <button class="demo-btn" onclick="switchOrder('package',this)">📦 Package</button>
+    <span class="demo-sep"></span>
+    <span class="demo-label">Payment outcome:</span>
+    <button class="demo-btn out-btn active" onclick="setOutcome('success',this)">✓ Success</button>
+    <button class="demo-btn out-btn decline" onclick="setOutcome('decline',this)">✕ Decline</button>
   </div>
 
   <!-- MAIN BODY -->
@@ -1245,6 +1271,32 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
   </div>
 </div>
 
+<!-- ── FAILURE MODAL ── -->
+<div class="fail-overlay" id="fail-overlay">
+  <div class="fail-modal">
+    <div class="fail-icon">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </div>
+    <div class="fail-title">Payment Unsuccessful</div>
+    <div class="fail-sub" id="fail-reason">Your card was declined by the issuing bank. No charge was made.</div>
+
+    <div class="fail-tips" id="fail-tips">
+      <div class="fail-tip-title">You can try:</div>
+      <ul id="fail-tip-list">
+        <li>Checking your card details and available balance</li>
+        <li>Using a different card or payment method</li>
+        <li>Contacting your bank if the problem persists</li>
+      </ul>
+    </div>
+
+    <div class="fail-code" id="fail-code">Ref: BK-20251128-4793-52010</div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:.5rem">
+      <button class="btn-retry" id="fail-retry" onclick="retryPayment()">↻ Try Again</button>
+      <button class="fail-link" onclick="chooseAnotherMethod()">Use a different payment method</button>
+    </div>
+  </div>
+</div>
+
 <script>
 // ── ORDER DATA per type (mirrors the create-booking summary) ──
 const ORDERS = {
@@ -1286,6 +1338,10 @@ let currentOrder = 'session';
 let couponApplied = false;
 let creditApplied = 0;         // amount of platform credit applied
 let currentPM = 'card';
+let forceOutcome = 'success';  // demo control: 'success' | 'decline'
+
+// Stripe-style test cards that always decline (feels real when typed)
+const DECLINE_CARDS = { '4000000000000002':'generic', '4000000000009995':'insufficient', '4000000000000069':'expired', '4000000000000127':'cvc' };
 
 // ── PERFORMANCE BONUS (set here at checkout, not on the create-booking page) ──
 let bonusEnabled = true;
@@ -1615,6 +1671,23 @@ function openReview(){
 
 function closeReview(){ document.getElementById('review-overlay').classList.remove('show'); }
 
+// ── DEMO: choose the simulated payment outcome ──
+function setOutcome(mode, btn){
+  forceOutcome = mode;
+  document.querySelectorAll('.out-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// Decide whether this attempt fails, and why.
+function paymentDecision(){
+  if (currentPM === 'card'){
+    const raw = (document.getElementById('card-num').value || '').replace(/\D/g,'');
+    if (DECLINE_CARDS[raw]) return { fail:true, kind:DECLINE_CARDS[raw] };
+  }
+  if (forceOutcome === 'decline') return { fail:true, kind: currentPM==='wallet' ? 'wallet' : currentPM==='card' ? 'generic' : 'qr' };
+  return { fail:false };
+}
+
 function confirmPay(){
   closeReview();
 
@@ -1627,17 +1700,54 @@ function confirmPay(){
   btn.classList.add('loading'); btn.disabled = true;
   const wasWallet = currentPM === 'wallet';
   const paid = totalDue();
+  const decision = paymentDecision();
 
   setTimeout(() => {
     btn.classList.remove('loading'); btn.disabled = false;
+    if (decision.fail){
+      showFailure(decision.kind);        // no charge / no deduction
+      return;
+    }
     if (wasWallet){
-      // deduct from wallet + show wallet receipt
-      showWalletReceipt(paid);
+      showWalletReceipt(paid);           // deduct from wallet + show receipt
     } else {
       document.getElementById('success-wallet').classList.remove('show');
     }
     document.getElementById('success-overlay').classList.add('show');
   }, wasWallet ? 1400 : 2000);
+}
+
+// ── PAYMENT FAILURE ──
+function showFailure(kind){
+  const o = ORDERS[currentOrder];
+  const reasons = {
+    generic:     'Your card was declined by the issuing bank. No charge was made.',
+    insufficient:'Your card was declined due to insufficient funds. No charge was made.',
+    expired:     'Your card was declined — the card has expired. No charge was made.',
+    cvc:         "Your card's security code (CVC) could not be verified. No charge was made.",
+    wallet:      "We couldn't complete your VIPTutors Wallet payment due to a temporary error. Your balance was not charged.",
+    qr:          'The payment was cancelled or not completed in time. No charge was made.',
+  };
+  const tips = {
+    wallet: ['Trying again in a few moments','Paying with a card instead','Contacting support if the problem persists'],
+    qr:     ['Scanning the code again with a stable connection','Making sure the payment app has enough balance','Choosing a card or wallet payment instead'],
+    default:['Checking your card details and available balance','Using a different card or payment method','Contacting your bank if the problem persists'],
+  };
+  document.getElementById('fail-reason').textContent = reasons[kind] || reasons.generic;
+  const list = document.getElementById('fail-tip-list');
+  list.innerHTML = (tips[kind] || tips.default).map(t => '<li>'+t+'</li>').join('');
+  document.getElementById('fail-code').textContent = 'Ref: ' + o.id + ' · not charged';
+  document.getElementById('fail-overlay').classList.add('show');
+}
+
+function retryPayment(){
+  document.getElementById('fail-overlay').classList.remove('show');
+  confirmPay();   // re-attempt with the current method/details
+}
+
+function chooseAnotherMethod(){
+  document.getElementById('fail-overlay').classList.remove('show');
+  document.querySelector('.pm-row').scrollIntoView({ behavior:'smooth', block:'center' });
 }
 
 // ── WALLET DEDUCTION + RECEIPT ──
@@ -1699,10 +1809,18 @@ function openQR(method){
 
   setTimeout(() => {
     if (!document.getElementById('qr-overlay').classList.contains('show')) return;
+    clearInterval(qrTimer);
+    const decision = paymentDecision();
+    if (decision.fail){
+      document.getElementById('qr-status-text').textContent = 'Payment failed or cancelled';
+      dot.style.background = 'var(--red)';
+      dot.style.animation = 'none';
+      setTimeout(() => { closeQR(); showFailure('qr'); }, 1200);
+      return;
+    }
     document.getElementById('qr-status-text').textContent = 'Payment received! Confirming…';
     dot.style.background = 'var(--green)';
     dot.style.animation = 'none';
-    clearInterval(qrTimer);
     setTimeout(() => {
       closeQR();
       document.getElementById('success-wallet').classList.remove('show');
@@ -1742,6 +1860,7 @@ function closeQR(){
 document.getElementById('qr-overlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeQR(); });
 document.getElementById('review-overlay').addEventListener('click', e => { if(e.target===e.currentTarget) closeReview(); });
 document.getElementById('success-overlay').addEventListener('click', e => { if(e.target===e.currentTarget) e.currentTarget.classList.remove('show'); });
+document.getElementById('fail-overlay').addEventListener('click', e => { if(e.target===e.currentTarget) e.currentTarget.classList.remove('show'); });
 
 // initial paint
 render();
