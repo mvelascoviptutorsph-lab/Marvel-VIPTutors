@@ -72,89 +72,48 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
 .card-title{font-size:12.5px;font-weight:800;color:var(--s-900);display:flex;align-items:center;gap:.5rem;letter-spacing:-.01em}
 .card-body{padding:1.1rem}
 
-/* ── ORDER DETAIL / HERO CARDS (product-specific) ── */
-
-/* ONLINE SESSION card */
-.od-session{background:linear-gradient(135deg,var(--o-100) 0%,var(--white) 60%);border:1px solid var(--o-300);border-radius:var(--r-xl);margin-bottom:1rem;overflow:hidden;animation:fadeUp .25s ease both}
-.od-session-top{padding:1rem 1.1rem .75rem;display:flex;align-items:flex-start;gap:.9rem}
-.od-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.od-icon svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.od-icon.session{background:var(--o-500);color:#fff}
-.od-icon.editing{background:var(--blue);color:#fff}
-.od-icon.package{background:var(--purple);color:#fff}
-.od-meta{flex:1;min-width:0}
-.od-type-tag{display:inline-flex;align-items:center;gap:3px;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:20px;margin-bottom:.35rem}
-.od-type-tag.session{background:var(--o-500);color:#fff}
-.od-type-tag.editing{background:var(--blue);color:#fff}
-.od-type-tag.package{background:var(--purple);color:#fff}
-.od-title{font-size:14px;font-weight:800;color:var(--s-900);line-height:1.3;margin-bottom:.3rem}
-.od-id{font-size:10px;font-family:'DM Mono',monospace;color:var(--s-500)}
-.od-price-pill{font-size:18px;font-weight:800;font-family:'DM Mono',monospace;color:var(--s-900);flex-shrink:0;text-align:right}
-.od-price-currency{font-size:10px;font-weight:500;color:var(--s-500);display:block;text-align:right}
-.od-divider{border:none;border-top:1px solid var(--o-200);margin:0}
-.od-details{padding:.75rem 1.1rem;display:grid;grid-template-columns:1fr 1fr;gap:.4rem .75rem}
-.od-detail-item{display:flex;flex-direction:column}
-.od-detail-key{font-size:9px;font-weight:700;color:var(--s-400);text-transform:uppercase;letter-spacing:.06em}
-.od-detail-val{font-size:12px;font-weight:600;color:var(--s-800)}
-.od-tutor-row{padding:.6rem 1.1rem .85rem;display:flex;align-items:center;gap:.6rem;border-top:1px solid var(--o-200)}
-.tutor-av{width:28px;height:28px;border-radius:50%;background:var(--o-200);color:var(--o-700);font-size:9px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;border:2px solid var(--white);box-shadow:0 0 0 2px var(--o-300)}
-.tutor-av.blue-av{background:var(--blue-bg);color:var(--blue);box-shadow:0 0 0 2px var(--blue-border)}
-.tutor-av.purple-av{background:var(--purple-bg);color:var(--purple);box-shadow:0 0 0 2px var(--purple-border)}
-.od-tutor-name{font-size:12px;font-weight:600;color:var(--s-800)}
-.od-tutor-role{font-size:10px;color:var(--s-500)}
-.od-status-chip{margin-left:auto;display:flex;align-items:center;gap:3px;font-size:9px;font-weight:700;padding:3px 9px;border-radius:20px}
+/* ── UNIVERSAL HERO CARD (same layout for every order type) ── */
+.hero{background:var(--white);border:1px solid rgba(15,23,42,.07);border-radius:var(--r-xl);box-shadow:var(--sh-sm);margin-bottom:1rem;overflow:hidden;animation:fadeUp .25s ease both}
+.hero-top{padding:1rem 1.1rem .85rem;display:flex;align-items:flex-start;gap:.85rem}
+.hero-icon{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff}
+.hero-icon svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.hero-meta{flex:1;min-width:0}
+.hero-tag{display:inline-flex;align-items:center;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:20px;margin-bottom:.35rem;color:#fff}
+.hero-title{font-size:14px;font-weight:800;color:var(--s-900);line-height:1.3;margin-bottom:.25rem}
+.hero-id{font-size:10px;font-family:'DM Mono',monospace;color:var(--s-500)}
+.hero-price-wrap{text-align:right;flex-shrink:0}
+.hero-price{font-size:18px;font-weight:800;font-family:'DM Mono',monospace;color:var(--s-900);letter-spacing:-.01em}
+.hero-unit{font-size:10px;font-weight:500;color:var(--s-500);margin-top:1px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:.35rem;padding:0 1.1rem .9rem}
+.hero-chip{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:600;color:var(--s-600);background:var(--s-100);border:1px solid var(--s-200);border-radius:20px;padding:3px 9px}
+.hero-chip svg{width:11px;height:11px;stroke:var(--s-400);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.hero-tutor{display:flex;align-items:center;gap:.6rem;padding:.7rem 1.1rem;border-top:1px solid var(--s-150);background:var(--s-100)}
+.hero-av{width:30px;height:30px;border-radius:50%;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:2px solid var(--white)}
+.hero-tutor-info{flex:1;min-width:0}
+.hero-tutor-name{font-size:12px;font-weight:700;color:var(--s-800)}
+.hero-tutor-role{font-size:10px;color:var(--s-500)}
+.hero-status{margin-left:auto;display:inline-flex;align-items:center;gap:3px;font-size:9px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}
 .chip-green{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
 .chip-orange{background:var(--o-100);color:var(--o-700);border:1px solid var(--o-300)}
 .chip-blue{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-border)}
 .chip-purple{background:var(--purple-bg);color:var(--purple);border:1px solid var(--purple-border)}
+/* per-type accent (colour only — layout stays identical) */
+.accent-session .hero-icon,.accent-session .hero-tag{background:var(--o-500)}
+.accent-session .hero-av{background:var(--o-200);color:var(--o-700);box-shadow:0 0 0 2px var(--o-300)}
+.accent-editing .hero-icon,.accent-editing .hero-tag{background:var(--blue)}
+.accent-editing .hero-av{background:var(--blue-bg);color:var(--blue);box-shadow:0 0 0 2px var(--blue-border)}
+.accent-package .hero-icon,.accent-package .hero-tag{background:var(--purple)}
+.accent-package .hero-av{background:var(--purple-bg);color:var(--purple);box-shadow:0 0 0 2px var(--purple-border)}
 
-/* EDITING order card */
-.od-editing{background:linear-gradient(135deg,var(--blue-bg) 0%,var(--white) 60%);border:1px solid var(--blue-border);border-radius:var(--r-xl);margin-bottom:1rem;overflow:hidden;animation:fadeUp .25s ease both}
-.od-editing .od-divider{border-top-color:var(--blue-border)}
-.od-editing .od-details{border-top:1px solid var(--blue-border)}
-.od-editing .od-tutor-row{border-top-color:var(--blue-border)}
-.od-editing .od-detail-key{color:var(--s-400)}
-
-/* PACKAGE order card */
-.od-package{background:linear-gradient(135deg,var(--purple-bg) 0%,var(--white) 60%);border:1px solid var(--purple-border);border-radius:var(--r-xl);margin-bottom:1rem;overflow:hidden;animation:fadeUp .25s ease both}
-.od-package .od-divider{border-top-color:var(--purple-border)}
-.od-package .od-tutor-row{border-top-color:var(--purple-border)}
-.package-items{padding:.75rem 1.1rem;border-top:1px solid var(--purple-border)}
-.pkg-item{display:flex;align-items:center;justify-content:space-between;padding:.35rem 0;border-bottom:1px dashed var(--purple-border);font-size:12px}
-.pkg-item:last-child{border-bottom:none}
-.pkg-item-name{color:var(--s-700);font-weight:500;flex:1}
-.pkg-item-qty{font-size:10px;color:var(--s-500);background:var(--s-150);padding:1px 6px;border-radius:4px;font-weight:600;margin:0 .5rem}
-.pkg-item-price{font-weight:700;font-family:'DM Mono',monospace;color:var(--s-800)}
-
-/* ── BOOKING FEE BREAKDOWN (inside hero cards — mirrors booking summary) ── */
-.od-fees{padding:.7rem 1.1rem .85rem;border-top:1px dashed var(--o-200)}
-.od-editing .od-fees{border-top-color:var(--blue-border)}
-.od-package .od-fees{border-top-color:var(--purple-border)}
-.od-fees-title{font-size:9px;font-weight:800;color:var(--s-400);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.45rem;display:flex;align-items:center;gap:.35rem}
-.fee-line{display:flex;align-items:center;justify-content:space-between;padding:.2rem 0;font-size:11.5px}
-.fee-line .fk{color:var(--s-600);display:flex;align-items:center;gap:.35rem}
-.fee-line .fv{font-family:'DM Mono',monospace;font-weight:600;color:var(--s-800)}
-.fee-line.subtotal{border-top:1px solid var(--s-150);margin-top:.3rem;padding-top:.45rem}
-.fee-line.subtotal .fk{font-weight:700;color:var(--s-800)}
-.fee-line.subtotal .fv{font-weight:800;color:var(--s-900);font-size:13px}
-.bonus-tag{display:inline-flex;align-items:center;gap:3px;font-size:8.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;padding:1px 6px;border-radius:20px;background:var(--o-100);color:var(--o-700);border:1px solid var(--o-300)}
-.od-editing .bonus-tag{background:var(--blue-bg);color:var(--blue);border-color:var(--blue-border)}
-.od-package .bonus-tag{background:var(--purple-bg);color:var(--purple);border-color:var(--purple-border)}
-.fee-note{font-size:10px;color:var(--s-500);line-height:1.4;margin-top:.4rem;display:flex;gap:.35rem}
-.fee-note svg{width:11px;height:11px;stroke:var(--s-400);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;margin-top:1px}
-
-/* EDITING per-assignment blocks */
-.assign-block{padding:.6rem 1.1rem}
-.assign-block+.assign-block{border-top:1px dashed var(--blue-border)}
-.assign-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.35rem}
-.assign-label{font-size:10px;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.05em}
-.assign-svc{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--blue);color:#fff}
-.assign-svc.polish{background:var(--purple)}
-.assign-file{font-size:11.5px;font-weight:600;color:var(--s-800);margin-bottom:.15rem}
-.assign-meta{font-size:10px;color:var(--s-500)}
-.assign-fees{margin-top:.4rem}
-.credit-hint{display:flex;align-items:center;gap:.4rem;font-size:10px;color:var(--o-700);background:var(--o-100);border:1px solid var(--o-300);border-radius:var(--r-sm);padding:.4rem .6rem;margin-top:.5rem}
-.credit-hint svg{width:12px;height:12px;stroke:var(--o-500);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+/* ── SUMMARY COST BREAKDOWN (dynamic per order type) ── */
+.sum-head{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--s-400);margin:.55rem 0 .05rem;display:flex;align-items:center;gap:.4rem}
+.sum-head:first-child{margin-top:0}
+.sum-head .svc{font-size:8.5px;font-weight:800;padding:1px 7px;border-radius:20px;color:#fff;letter-spacing:.03em}
+.sum-head .svc.edit{background:var(--blue)}
+.sum-head .svc.polish{background:var(--purple)}
+.summary-row.muted .summary-label{color:var(--s-400)}
+.summary-row.muted .summary-value{color:var(--s-500)}
+.sum-qty{font-size:9.5px;color:var(--s-500);background:var(--s-150);padding:1px 6px;border-radius:4px;font-weight:600;margin-left:5px}
 
 /* FORM ELEMENTS */
 .form-group{margin-bottom:.85rem}
@@ -172,21 +131,20 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
 .stripe-field input::placeholder{color:var(--s-400);font-family:'DM Sans',sans-serif;font-size:12.5px}
 .card-brand-icon{position:absolute;right:10px;top:50%;transform:translateY(-50%);pointer-events:none}
 
-/* PAYMENT METHOD TILES */
-.pm-row{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1.1rem}
-.pm-option{position:relative;border:1.5px solid var(--s-200);border-radius:14px;padding:.65rem .75rem;cursor:pointer;transition:transform .18s cubic-bezier(.34,1.3,.64,1),border-color .18s,box-shadow .18s,background .18s;display:flex;align-items:center;gap:.55rem;background:var(--white)}
+/* PAYMENT METHOD TILES (single row) */
+.pm-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-bottom:1.1rem}
+.pm-option{position:relative;border:1.5px solid var(--s-200);border-radius:14px;padding:.7rem .35rem .6rem;cursor:pointer;transition:transform .18s cubic-bezier(.34,1.3,.64,1),border-color .18s,box-shadow .18s,background .18s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;text-align:center;background:var(--white);min-height:74px}
 .pm-option:hover{border-color:var(--o-300);transform:translateY(-2px);box-shadow:0 6px 16px rgba(249,115,22,.10)}
 .pm-option.active{border-color:var(--o-500);background:linear-gradient(135deg,var(--o-100),#fff 70%);box-shadow:0 0 0 3px var(--o-200),0 6px 16px rgba(249,115,22,.12)}
-.pm-ic{width:32px;height:32px;border-radius:10px;background:var(--s-150);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;transition:all .18s}
+.pm-ic{width:30px;height:30px;border-radius:9px;background:var(--s-150);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;transition:all .18s}
 .pm-option:hover .pm-ic,.pm-option.active .pm-ic{background:var(--o-200)}
 .pm-ic.wallet-ic{background:linear-gradient(135deg,rgba(124,58,237,.14),rgba(249,115,22,.14))}
-.pm-label-wrap{display:flex;flex-direction:column;line-height:1.3;min-width:0;flex:1}
-.pm-name{font-size:12px;font-weight:700;color:var(--s-800);transition:color .18s}
+.pm-name{font-size:11px;font-weight:700;color:var(--s-700);transition:color .18s;line-height:1.2}
 .pm-option.active .pm-name{color:var(--o-800)}
-.pm-sub{font-size:9.5px;font-weight:500;color:var(--s-400);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pm-option.wallet-opt .pm-sub{font-family:'DM Mono',monospace;font-weight:600;color:var(--purple)}
-.pm-check{width:18px;height:18px;border-radius:50%;background:var(--o-500);flex-shrink:0;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.4);transition:opacity .2s,transform .25s cubic-bezier(.34,1.56,.64,1)}
-.pm-check svg{width:10px;height:10px;stroke:#fff;fill:none;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+.pm-sub{font-size:9.5px;font-weight:600;color:var(--s-400);white-space:nowrap;line-height:1;font-family:'DM Mono',monospace}
+.pm-option.wallet-opt .pm-sub{color:var(--purple)}
+.pm-check{position:absolute;top:6px;right:6px;width:16px;height:16px;border-radius:50%;background:var(--o-500);flex-shrink:0;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.4);transition:opacity .2s,transform .25s cubic-bezier(.34,1.56,.64,1)}
+.pm-check svg{width:9px;height:9px;stroke:#fff;fill:none;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
 .pm-option.active .pm-check{opacity:1;transform:scale(1)}
 
 /* STRIPE SECURE ROW */
@@ -477,205 +435,28 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
           </div>
         </div>
 
-        <!-- ── ORDER DETAIL / HERO CARDS ── -->
-
-        <!-- ONLINE SESSION -->
-        <div class="od-session" id="od-session">
-          <div class="od-session-top">
-            <div class="od-icon session">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <!-- ── UNIVERSAL HERO CARD (populated by JS from the active order) ── -->
+        <div class="hero accent-session" id="hero">
+          <div class="hero-top">
+            <div class="hero-icon" id="hero-icon"></div>
+            <div class="hero-meta">
+              <div class="hero-tag" id="hero-tag">Online Session</div>
+              <div class="hero-title" id="hero-title">Interview Preparation — IC Chemistry Major</div>
+              <div class="hero-id" id="hero-id">BK-20251128-4793-52010</div>
             </div>
-            <div class="od-meta">
-              <div class="od-type-tag session">Online Session</div>
-              <div class="od-title">Interview Preparation — IC Chemistry Major</div>
-              <div class="od-id">BK-20251128-4793-52010 &nbsp;·&nbsp; ORD-20241022-2824</div>
-            </div>
-            <div>
-              <div class="od-price-pill">¥550.00</div>
-              <span class="od-price-currency">CNY · 1 session</span>
+            <div class="hero-price-wrap">
+              <div class="hero-price" id="hero-price">¥550.00</div>
+              <div class="hero-unit" id="hero-unit">CNY · 1 session</div>
             </div>
           </div>
-          <hr class="od-divider"/>
-          <div class="od-details">
-            <div class="od-detail-item">
-              <span class="od-detail-key">Session Type</span>
-              <span class="od-detail-val">Academic Tutoring</span>
+          <div class="hero-chips" id="hero-chips"></div>
+          <div class="hero-tutor">
+            <div class="hero-av" id="hero-av">S</div>
+            <div class="hero-tutor-info">
+              <div class="hero-tutor-name" id="hero-tutor-name">Sophia</div>
+              <div class="hero-tutor-role" id="hero-tutor-role">Interview Prep · Chemistry · UK Background</div>
             </div>
-            <div class="od-detail-item">
-              <span class="od-detail-key">Session Length</span>
-              <span class="od-detail-val">1.0 hour</span>
-            </div>
-            <div class="od-detail-item">
-              <span class="od-detail-key">Academic Field</span>
-              <span class="od-detail-val">Chemistry (IC)</span>
-            </div>
-            <div class="od-detail-item">
-              <span class="od-detail-key">Tutor Preference</span>
-              <span class="od-detail-val">All Tutors · UK</span>
-            </div>
-          </div>
-          <!-- BOOKING FEE BREAKDOWN (from booking summary) -->
-          <div class="od-fees">
-            <div class="od-fees-title">Booking Fee Breakdown</div>
-            <div class="fee-line"><span class="fk">Base Fee</span><span class="fv">¥500.00</span></div>
-            <div class="fee-line">
-              <span class="fk">Performance Bonus
-                <span class="tip"><span class="tip-icon">?</span><span class="tip-box">To entice more tutors, you can be particular on the performance bonus amount</span></span>
-                <span class="bonus-tag">Tutor incentive</span>
-              </span>
-              <span class="fv hero-bonus-val">¥50.00</span>
-            </div>
-            <div class="fee-line subtotal"><span class="fk">Booking Fee</span><span class="fv hero-sub-val">¥550.00</span></div>
-            <div class="credit-hint">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-              <span><strong>¥120.00</strong> platform credit available — apply it in the summary to reduce your total.</span>
-            </div>
-          </div>
-          <div class="od-tutor-row">
-            <div class="tutor-av">S</div>
-            <div>
-              <div class="od-tutor-name">Sophia</div>
-              <div class="od-tutor-role">Interview Prep · Chemistry · UK Background</div>
-            </div>
-            <div class="od-status-chip chip-green">✓ Confirmed</div>
-          </div>
-        </div>
-
-        <!-- EDITING ORDER -->
-        <div class="od-editing" id="od-editing" style="display:none">
-          <div class="od-session-top">
-            <div class="od-icon editing">
-              <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-            </div>
-            <div class="od-meta">
-              <div class="od-type-tag editing">Editorial Booking</div>
-              <div class="od-title">2025 John Locke Essay — Public Policy &amp; Science</div>
-              <div class="od-id">ED-20251201-0082-11930 &nbsp;·&nbsp; ORD-20241022-2824</div>
-            </div>
-            <div>
-              <div class="od-price-pill">¥1,500.00</div>
-              <span class="od-price-currency">CNY · 2 assignments</span>
-            </div>
-          </div>
-          <hr class="od-divider" style="border-color:var(--blue-border)"/>
-
-          <!-- Assignment #1 -->
-          <div class="assign-block">
-            <div class="assign-head">
-              <span class="assign-label">Assignment #1</span>
-              <span class="assign-svc">✎ Editing</span>
-            </div>
-            <div class="assign-file">Public Policy Essay — my-assignment-file.pdf</div>
-            <div class="assign-meta">2,000 words · US English · Deadline in 48h</div>
-            <div class="assign-fees">
-              <div class="fee-line"><span class="fk">Editing (2,000 words)</span><span class="fv">¥800.00</span></div>
-              <div class="fee-line">
-                <span class="fk">Last Minute Booking
-                  <span class="tip"><span class="tip-icon">?</span><span class="tip-box">Last minute fee is charged for deadlines less than 72 hours.</span></span>
-                </span>
-                <span class="fv">¥200.00</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Assignment #2 -->
-          <div class="assign-block">
-            <div class="assign-head">
-              <span class="assign-label">Assignment #2</span>
-              <span class="assign-svc polish">✦ Polishing</span>
-            </div>
-            <div class="assign-file">Science &amp; Technology Essay — draft-v2.docx</div>
-            <div class="assign-meta">1,500 words · US English · Deadline in 6 days</div>
-            <div class="assign-fees">
-              <div class="fee-line"><span class="fk">Polishing (1,500 words)</span><span class="fv">¥400.00</span></div>
-            </div>
-          </div>
-
-          <!-- Editing booking fee breakdown -->
-          <div class="od-fees" style="border-top-color:var(--blue-border)">
-            <div class="fee-line"><span class="fk">Booking Fee (2 assignments)</span><span class="fv">¥1,200.00</span></div>
-            <div class="fee-line"><span class="fk">Last Minute Fees</span><span class="fv">¥200.00</span></div>
-            <div class="fee-line">
-              <span class="fk">Performance Bonus
-                <span class="tip"><span class="tip-icon">?</span><span class="tip-box">To entice more tutors, you can be particular on the performance bonus amount</span></span>
-                <span class="bonus-tag">Tutor incentive</span>
-              </span>
-              <span class="fv hero-bonus-val">¥100.00</span>
-            </div>
-            <div class="fee-line subtotal"><span class="fk">Total Booking Fee</span><span class="fv hero-sub-val">¥1,500.00</span></div>
-            <div class="fee-note">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-              Last minute fee is charged for deadlines less than 72 hours.
-            </div>
-          </div>
-
-          <div class="od-tutor-row" style="border-top-color:var(--blue-border)">
-            <div class="tutor-av blue-av">K</div>
-            <div>
-              <div class="od-tutor-name">Assigned on confirmation</div>
-              <div class="od-tutor-role">Essay Specialist Editors · US Background</div>
-            </div>
-            <div class="od-status-chip chip-blue">⏳ Awaiting Payment</div>
-          </div>
-        </div>
-
-        <!-- PACKAGE ORDER -->
-        <div class="od-package" id="od-package" style="display:none">
-          <div class="od-session-top">
-            <div class="od-icon package">
-              <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-            </div>
-            <div class="od-meta">
-              <div class="od-type-tag package">Marketplace Package</div>
-              <div class="od-title">Cambridge STEM Interview Prep — Full Package</div>
-              <div class="od-id">PKG-20251210-3391-88211 &nbsp;·&nbsp; ORD-20241022-2824</div>
-            </div>
-            <div>
-              <div class="od-price-pill">¥4,000.00</div>
-              <span class="od-price-currency">CNY · bundle</span>
-            </div>
-          </div>
-          <hr class="od-divider" style="border-color:var(--purple-border)"/>
-          <div class="package-items">
-            <div class="pkg-item">
-              <span class="pkg-item-name">Mock Interview Sessions</span>
-              <span class="pkg-item-qty">×4</span>
-              <span class="pkg-item-price">¥2,000.00</span>
-            </div>
-            <div class="pkg-item">
-              <span class="pkg-item-name">Personal Statement Editing</span>
-              <span class="pkg-item-qty">×1</span>
-              <span class="pkg-item-price">¥1,200.00</span>
-            </div>
-            <div class="pkg-item">
-              <span class="pkg-item-name">Subject Q&amp;A Session (60 min)</span>
-              <span class="pkg-item-qty">×1</span>
-              <span class="pkg-item-price">¥600.00</span>
-            </div>
-          </div>
-          <!-- Package booking fee breakdown -->
-          <div class="od-fees" style="border-top-color:var(--purple-border)">
-            <div class="fee-line"><span class="fk">Base Fee (bundle)</span><span class="fv">¥3,800.00</span></div>
-            <div class="fee-line">
-              <span class="fk">Performance Bonus
-                <span class="tip"><span class="tip-icon">?</span><span class="tip-box">To entice more tutors, you can be particular on the performance bonus amount</span></span>
-                <span class="bonus-tag">Tutor incentive</span>
-              </span>
-              <span class="fv hero-bonus-val">¥200.00</span>
-            </div>
-            <div class="fee-line subtotal"><span class="fk">Booking Fee</span><span class="fv hero-sub-val">¥4,000.00</span></div>
-            <div class="credit-hint">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
-              <span><strong>¥120.00</strong> platform credit available — apply it in the summary to reduce your total.</span>
-            </div>
-          </div>
-          <div class="od-tutor-row" style="border-top-color:var(--purple-border)">
-            <div class="tutor-av purple-av">A</div>
-            <div>
-              <div class="od-tutor-name">Assigned on confirmation</div>
-              <div class="od-tutor-role">Cambridge &amp; Oxford specialists</div>
-            </div>
-            <div class="od-status-chip chip-purple">📦 Bundle</div>
+            <div class="hero-status chip-green" id="hero-status">✓ Confirmed</div>
           </div>
         </div>
 
@@ -695,30 +476,28 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
           </div>
           <div class="card-body">
 
-            <!-- METHOD SELECTOR -->
+            <!-- METHOD SELECTOR (single row · Wallet last) -->
             <div class="pm-row">
               <div class="pm-option active" onclick="selectPM(this,'card')">
+                <span class="pm-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
                 <span class="pm-ic">💳</span>
-                <div class="pm-label-wrap"><span class="pm-name">Card</span><span class="pm-sub">Visa · Mastercard · UnionPay</span></div>
-                <span class="pm-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
-              </div>
-              <div class="pm-option wallet-opt" onclick="selectPM(this,'wallet')">
-                <span class="pm-ic wallet-ic">👛</span>
-                <div class="pm-label-wrap">
-                  <span class="pm-name">VIPTutors Wallet</span>
-                  <span class="pm-sub" id="pm-wallet-sub">¥1,250.00 available</span>
-                </div>
-                <span class="pm-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span class="pm-name">Card</span>
               </div>
               <div class="pm-option" onclick="selectPM(this,'wechat')">
-                <span class="pm-ic">💚</span>
-                <div class="pm-label-wrap"><span class="pm-name">WeChat Pay</span><span class="pm-sub">Scan QR to pay</span></div>
                 <span class="pm-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span class="pm-ic">💚</span>
+                <span class="pm-name">WeChat Pay</span>
               </div>
               <div class="pm-option" onclick="selectPM(this,'alipay')">
-                <span class="pm-ic">🔵</span>
-                <div class="pm-label-wrap"><span class="pm-name">Alipay</span><span class="pm-sub">Scan QR to pay</span></div>
                 <span class="pm-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span class="pm-ic">🔵</span>
+                <span class="pm-name">Alipay</span>
+              </div>
+              <div class="pm-option wallet-opt" onclick="selectPM(this,'wallet')">
+                <span class="pm-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span class="pm-ic wallet-ic">👛</span>
+                <span class="pm-name">Wallet</span>
+                <span class="pm-sub" id="pm-wallet-sub">¥1,250.00</span>
               </div>
             </div>
 
@@ -915,14 +694,11 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
           </div>
           <div class="card-body">
 
-            <div class="summary-row">
-              <span class="summary-label" id="sum-item-label">Base Fee</span>
-              <span class="summary-value" id="sum-base-val">¥500.00</span>
-            </div>
-            <div class="summary-row" id="sum-lastmin-row" style="display:none">
-              <span class="summary-label">Last-minute fees</span>
-              <span class="summary-value" id="sum-lastmin-val">¥0.00</span>
-            </div>
+            <!-- COST BREAKDOWN (dynamic per order type) -->
+            <div id="sum-lines"></div>
+
+            <div class="divider" style="margin:.6rem 0"></div>
+
             <!-- PERFORMANCE BONUS (editable at checkout) -->
             <div class="pb-block">
               <div class="pb-row">
@@ -1298,39 +1074,65 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
 </div>
 
 <script>
-// ── ORDER DATA per type (mirrors the create-booking summary) ──
+// ── HERO ICONS (per accent) ──
+const ICONS = {
+  session:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
+  editing:'<svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>',
+  package:'<svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>',
+};
+
+// ── ORDER DATA per type ──
+// hero = compact universal card · lines = cost breakdown shown in the summary
 const ORDERS = {
   session: {
-    type:'Online Session',
-    desc:'Interview Preparation — IC Chemistry Major',
-    id:'BK-20251128-4793-52010',
-    baseLabel:'Base Fee',
-    baseFee:500,
-    lastMinute:0,
+    accent:'session', tag:'Online Session',
+    title:'Interview Preparation — IC Chemistry Major',
+    id:'BK-20251128-4793-52010', orderRef:'ORD-20241022-2824',
+    unit:'CNY · 1 session',
+    chips:['Academic Tutoring','1.0 hour','Chemistry (IC)','All Tutors · UK'],
+    tutor:{ av:'S', name:'Sophia', role:'Interview Prep · Chemistry · UK Background' },
+    status:{ cls:'chip-green', text:'✓ Confirmed' },
+    lines:[ { label:'Base Fee', amount:500 } ],
     performanceBonus:50,
     creditAvailable:120,
   },
   editing: {
-    type:'Editorial Booking',
-    desc:'2025 John Locke Essay — Public Policy & Science',
-    id:'ED-20251201-0082-11930',
-    baseLabel:'Booking Fee (2 assignments)',
-    baseFee:1200,
-    lastMinute:200,
+    accent:'editing', tag:'Editorial Booking',
+    title:'2025 John Locke Essay — Public Policy & Science',
+    id:'ED-20251201-0082-11930', orderRef:'ORD-20241022-2824',
+    unit:'CNY · 2 assignments',
+    chips:['2 assignments','3,500 words total','US English','Deadline in 48h'],
+    tutor:{ av:'K', name:'Assigned on confirmation', role:'Essay Specialist Editors · US Background' },
+    status:{ cls:'chip-blue', text:'⏳ Awaiting Payment' },
+    lines:[
+      { head:'Assignment #1', svc:'Editing', svcCls:'edit' },
+      { label:'Editing · 2,000 words', amount:800 },
+      { label:'Last Minute Booking', amount:200, muted:true, tip:'Last minute fee is charged for deadlines less than 72 hours.' },
+      { head:'Assignment #2', svc:'Polishing', svcCls:'polish' },
+      { label:'Polishing · 1,500 words', amount:400 },
+    ],
     performanceBonus:100,
     creditAvailable:120,
   },
   package: {
-    type:'Marketplace Package',
-    desc:'Cambridge STEM Interview Prep — Full Package',
-    id:'PKG-20251210-3391-88211',
-    baseLabel:'Base Fee (bundle)',
-    baseFee:3800,
-    lastMinute:0,
+    accent:'package', tag:'Marketplace Package',
+    title:'Cambridge STEM Interview Prep — Full Package',
+    id:'PKG-20251210-3391-88211', orderRef:'ORD-20241022-2824',
+    unit:'CNY · bundle',
+    chips:['3 services','6 sessions total','Cambridge / Oxford'],
+    tutor:{ av:'A', name:'Assigned on confirmation', role:'Cambridge & Oxford specialists' },
+    status:{ cls:'chip-purple', text:'📦 Bundle' },
+    lines:[
+      { label:'Mock Interview Sessions', qty:'×4', amount:2000 },
+      { label:'Personal Statement Editing', qty:'×1', amount:1200 },
+      { label:'Subject Q&A Session (60 min)', qty:'×1', amount:600 },
+    ],
     performanceBonus:200,
     creditAvailable:120,
   }
 };
+
+function linesTotal(type){ return (ORDERS[type].lines||[]).reduce((s,l)=> s + (l.amount||0), 0); }
 
 // ── WALLET STATE ──
 const WALLET_BALANCE = 1250;   // available balance (CNY)
@@ -1353,8 +1155,7 @@ function bonusValue(){ return bonusEnabled ? bonusAmount : 0; }
 
 // ── CORE: compute the payable total for the active order ──
 function subtotal(){
-  const o = ORDERS[currentOrder];
-  return o.baseFee + o.lastMinute + bonusValue();
+  return linesTotal(currentOrder) + bonusValue();
 }
 function promoDiscount(){
   return couponApplied ? Math.round(subtotal() * 0.1) : 0;
@@ -1363,17 +1164,50 @@ function totalDue(){
   return Math.max(0, subtotal() - promoDiscount() - creditApplied);
 }
 
+// ── Populate the universal hero card from the active order ──
+function renderHero(){
+  const o = ORDERS[currentOrder];
+  const hero = document.getElementById('hero');
+  hero.className = 'hero accent-' + o.accent;
+  document.getElementById('hero-icon').innerHTML = ICONS[o.accent];
+  document.getElementById('hero-tag').textContent = o.tag;
+  document.getElementById('hero-title').textContent = o.title;
+  document.getElementById('hero-id').innerHTML = o.id + ' &nbsp;·&nbsp; ' + o.orderRef;
+  document.getElementById('hero-price').textContent = fmt(subtotal());
+  document.getElementById('hero-unit').textContent = o.unit;
+  document.getElementById('hero-chips').innerHTML =
+    o.chips.map(c => '<span class="hero-chip">'+c+'</span>').join('');
+  document.getElementById('hero-av').textContent = o.tutor.av;
+  document.getElementById('hero-tutor-name').textContent = o.tutor.name;
+  document.getElementById('hero-tutor-role').textContent = o.tutor.role;
+  const st = document.getElementById('hero-status');
+  st.className = 'hero-status ' + o.status.cls;
+  st.textContent = o.status.text;
+}
+
+// ── Render the cost breakdown inside the summary ──
+function renderLines(){
+  const o = ORDERS[currentOrder];
+  const html = (o.lines||[]).map(l => {
+    if (l.head){
+      const svc = l.svc ? ' <span class="svc '+(l.svcCls||'')+'">'+l.svc+'</span>' : '';
+      return '<div class="sum-head">'+l.head+svc+'</div>';
+    }
+    const tip = l.tip ? ' <span class="tip"><span class="tip-icon">?</span><span class="tip-box">'+l.tip+'</span></span>' : '';
+    const qty = l.qty ? '<span class="sum-qty">'+l.qty+'</span>' : '';
+    return '<div class="summary-row'+(l.muted?' muted':'')+'">'
+      + '<span class="summary-label">'+l.label+qty+tip+'</span>'
+      + '<span class="summary-value">'+fmt(l.amount)+'</span></div>';
+  }).join('');
+  document.getElementById('sum-lines').innerHTML = html;
+}
+
 // ── Re-render the whole summary + wallet + pay button from state ──
 function render(){
   const o = ORDERS[currentOrder];
 
-  // summary line items
-  document.getElementById('sum-item-label').textContent = o.baseLabel;
-  document.getElementById('sum-base-val').textContent = fmt(o.baseFee);
-
-  const lmRow = document.getElementById('sum-lastmin-row');
-  if (o.lastMinute > 0){ lmRow.style.display='flex'; document.getElementById('sum-lastmin-val').textContent = fmt(o.lastMinute); }
-  else { lmRow.style.display='none'; }
+  renderHero();
+  renderLines();
 
   // performance bonus control (editable)
   const sw = document.getElementById('bonus-switch');
@@ -1384,15 +1218,6 @@ function render(){
   wrap.classList.toggle('disabled', !bonusEnabled);
   input.disabled = !bonusEnabled;
   if (document.activeElement !== input){ input.value = bonusAmount.toFixed(2); }
-
-  // reflect the live bonus into the active hero card's breakdown
-  const hero = document.getElementById('od-'+currentOrder);
-  if (hero){
-    const bv = hero.querySelector('.hero-bonus-val');
-    const sv = hero.querySelector('.hero-sub-val');
-    if (bv) bv.textContent = fmt(bonusValue());
-    if (sv) sv.textContent = fmt(o.baseFee + o.lastMinute + bonusValue());
-  }
 
   // promo row
   const promo = promoDiscount();
@@ -1458,12 +1283,9 @@ function switchOrder(type, btn){
   bonusEnabled = true;
   bonusAmount = ORDERS[type].performanceBonus;
 
-  document.querySelectorAll('.demo-btn').forEach(b => b.classList.remove('active'));
+  // only the order-type demo buttons toggle here (leave the outcome buttons alone)
+  document.querySelectorAll('.demo-btn:not(.out-btn)').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-
-  document.getElementById('od-session').style.display = type === 'session' ? 'block' : 'none';
-  document.getElementById('od-editing').style.display = type === 'editing' ? 'block' : 'none';
-  document.getElementById('od-package').style.display = type === 'package' ? 'block' : 'none';
 
   // reset coupon + credit controls
   const inp = document.getElementById('coupon-input');
