@@ -79,16 +79,33 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
 .hero-icon svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .hero-meta{flex:1;min-width:0}
 .hero-tag{display:inline-flex;align-items:center;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:20px;margin-bottom:.35rem;background:var(--s-100);color:var(--s-600);border:1px solid var(--s-200)}
-.hero-label{font-size:10.5px;font-weight:600;color:var(--s-400);margin-bottom:.25rem}
+.hero-label{font-size:10px;font-weight:700;color:var(--s-400);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem}
 .hero-title{font-size:15px;font-weight:800;color:var(--s-900);line-height:1.35;letter-spacing:-.01em}
 .hero-id{font-size:10px;font-family:'DM Mono',monospace;color:var(--s-500)}
 .hero-price-wrap{text-align:right;flex-shrink:0}
 .hero-price{font-size:18px;font-weight:800;font-family:'DM Mono',monospace;color:var(--s-900);letter-spacing:-.01em}
 .hero-unit{font-size:10px;font-weight:500;color:var(--s-500);margin-top:1px}
-.hero-chips{display:flex;flex-wrap:wrap;gap:.4rem}
-.hero-chip{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--s-700);background:var(--white);border:1px solid var(--s-200);border-radius:20px;padding:4px 11px 4px 8px;box-shadow:var(--sh-sm)}
-.hero-chip .chip-ic{font-size:12px;line-height:1;display:inline-flex}
+.hero-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem}
+.hero-chip{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--s-700);background:var(--white);border:1px solid var(--s-200);border-radius:9px;padding:4px 10px 4px 4px;box-shadow:var(--sh-sm);transition:border-color .15s}
+.hero-chip:hover{border-color:var(--s-300)}
+.hero-chip .chip-ic{width:20px;height:20px;border-radius:6px;background:var(--s-100);display:inline-flex;align-items:center;justify-content:center;font-size:11px;line-height:1;flex-shrink:0}
 .hero-chip svg{width:11px;height:11px;stroke:var(--s-400);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+/* header status chip */
+.hero-status{display:inline-flex;align-items:center;gap:5px;font-size:9.5px;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap;background:var(--s-100);border:1px solid var(--s-200);color:var(--s-600)}
+.hero-status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--s-400)}
+.hero-status.ok{background:var(--green-bg);border-color:var(--green-border);color:var(--green)}
+.hero-status.ok::before{background:var(--green)}
+.hero-status.wait{background:var(--o-100);border-color:var(--o-300);color:var(--o-700)}
+.hero-status.wait::before{background:var(--o-500)}
+/* footer: tutor + reference */
+.hero-foot{display:flex;align-items:center;justify-content:space-between;gap:.75rem;margin-top:.9rem;padding-top:.75rem;border-top:1px solid var(--s-150)}
+.hero-foot-l{display:flex;align-items:center;gap:.5rem;min-width:0}
+.hero-foot-av{width:24px;height:24px;border-radius:50%;background:var(--s-150);color:var(--s-600);font-size:9px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hero-foot-tutor{display:flex;flex-direction:column;line-height:1.25;min-width:0}
+.hero-foot-name{font-size:11.5px;font-weight:700;color:var(--s-800)}
+.hero-foot-role{font-size:9.5px;color:var(--s-500)}
+.hero-foot-ref{font-size:10px;color:var(--s-400);white-space:nowrap;flex-shrink:0}
+.hero-foot-ref span{font-family:'DM Mono',monospace;color:var(--s-600);font-weight:600}
 .hero-tutor{display:flex;align-items:center;gap:.6rem;padding:.7rem 1.1rem;border-top:1px solid var(--s-150);background:var(--s-100)}
 .hero-av{width:30px;height:30px;border-radius:50%;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:2px solid var(--white);background:var(--s-150);color:var(--s-600);box-shadow:0 0 0 2px var(--s-200)}
 .hero-tutor-info{flex:1;min-width:0}
@@ -475,11 +492,19 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--o-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="7" y1="9" x2="17" y2="9"/><line x1="7" y1="13" x2="14" y2="13"/></svg>
               Booking Details
             </div>
+            <span class="hero-status" id="hero-status"></span>
           </div>
           <div class="card-body">
             <div class="hero-label">Booking Title</div>
             <div class="hero-title" id="hero-title">Interview Preparation — IC Chemistry Major</div>
-            <div class="hero-chips" id="hero-chips" style="margin-top:.7rem"></div>
+            <div class="hero-chips" id="hero-chips"></div>
+            <div class="hero-foot">
+              <div class="hero-foot-l">
+                <span class="hero-foot-av" id="hero-foot-av">S</span>
+                <span class="hero-foot-tutor"><span class="hero-foot-name" id="hero-foot-name">Sophia</span><span class="hero-foot-role" id="hero-foot-role">Chemistry · UK</span></span>
+              </div>
+              <span class="hero-foot-ref">Ref <span id="hero-foot-ref">BK-…</span></span>
+            </div>
           </div>
         </div>
 
@@ -1165,8 +1190,8 @@ const ORDERS = {
     id:'BK-20251128-4793-52010', orderRef:'ORD-20241022-2824',
     unit:'CNY · 1 session',
     chips:[{i:'🖥️',t:'Academic Tutoring'},{i:'⏰',t:'1.0 hour'},{i:'📘',t:'Chemistry (IC)'},{i:'🌍',t:'All Tutors · UK'}],
-    tutor:{ av:'S', name:'Sophia', role:'Interview Prep · Chemistry · UK Background' },
-    status:{ cls:'chip-green', text:'✓ Confirmed' },
+    tutor:{ av:'S', name:'Sophia', role:'Chemistry · UK background' },
+    status:{ tone:'ok', text:'Confirmed' },
     lines:[ { label:'Base Fee', amount:500 } ],
     performanceBonus:50,
     creditAvailable:120,
@@ -1179,8 +1204,8 @@ const ORDERS = {
     id:'ED-20251201-0082-11930', orderRef:'ORD-20241022-2824',
     unit:'CNY · 2 assignments',
     chips:[{i:'📝',t:'2 assignments'},{i:'📄',t:'3,500 words total'},{i:'🌐',t:'US English'},{i:'⏰',t:'Deadline in 48h'}],
-    tutor:{ av:'K', name:'Assigned on confirmation', role:'Essay Specialist Editors · US Background' },
-    status:{ cls:'chip-blue', text:'⏳ Awaiting Payment' },
+    tutor:{ av:'—', name:'To be assigned', role:'Essay specialist editor · US' },
+    status:{ tone:'wait', text:'Awaiting payment' },
     lines:[
       { head:'Assignment #1', svc:'Editing', svcCls:'edit' },
       { label:'Editing · 2,000 words', amount:800 },
@@ -1199,8 +1224,8 @@ const ORDERS = {
     id:'PKG-20251210-3391-88211', orderRef:'ORD-20241022-2824',
     unit:'CNY · bundle',
     chips:[{i:'📦',t:'3 services'},{i:'🎯',t:'6 sessions total'},{i:'🎓',t:'Cambridge / Oxford'}],
-    tutor:{ av:'A', name:'Assigned on confirmation', role:'Cambridge & Oxford specialists' },
-    status:{ cls:'chip-purple', text:'📦 Bundle' },
+    tutor:{ av:'—', name:'To be assigned', role:'Cambridge & Oxford specialists' },
+    status:{ tone:'', text:'Bundle booking' },
     lines:[
       { label:'Mock Interview Sessions', qty:'×4', amount:2000 },
       { label:'Personal Statement Editing', qty:'×1', amount:1200 },
@@ -1255,6 +1280,13 @@ function renderHero(){
   const o = ORDERS[currentOrder];
   document.getElementById('hero-title').textContent = o.title;
   document.getElementById('hero-chips').innerHTML = chipsHTML(o.chips);
+  const st = document.getElementById('hero-status');
+  st.className = 'hero-status ' + (o.status.tone || '');
+  st.textContent = o.status.text;
+  document.getElementById('hero-foot-av').textContent = o.tutor.av;
+  document.getElementById('hero-foot-name').textContent = o.tutor.name;
+  document.getElementById('hero-foot-role').textContent = o.tutor.role;
+  document.getElementById('hero-foot-ref').textContent = o.id;
 }
 
 // ── Render the cost breakdown inside the summary ──
