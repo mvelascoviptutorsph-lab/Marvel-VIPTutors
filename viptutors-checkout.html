@@ -75,10 +75,10 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
 /* ── UNIVERSAL HERO CARD (same layout for every order type) ── */
 .hero{background:var(--white);border:1px solid rgba(15,23,42,.07);border-radius:var(--r-xl);box-shadow:var(--sh-sm);margin-bottom:1rem;overflow:hidden;animation:fadeUp .25s ease both}
 .hero-top{padding:1rem 1.1rem .85rem;display:flex;align-items:flex-start;gap:.85rem}
-.hero-icon{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff}
+.hero-icon{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--s-800);color:#fff}
 .hero-icon svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .hero-meta{flex:1;min-width:0}
-.hero-tag{display:inline-flex;align-items:center;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:20px;margin-bottom:.35rem;color:#fff}
+.hero-tag{display:inline-flex;align-items:center;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:20px;margin-bottom:.35rem;background:var(--s-100);color:var(--s-600);border:1px solid var(--s-200)}
 .hero-title{font-size:14px;font-weight:800;color:var(--s-900);line-height:1.3;margin-bottom:.25rem}
 .hero-id{font-size:10px;font-family:'DM Mono',monospace;color:var(--s-500)}
 .hero-price-wrap{text-align:right;flex-shrink:0}
@@ -88,7 +88,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
 .hero-chip{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:600;color:var(--s-600);background:var(--s-100);border:1px solid var(--s-200);border-radius:20px;padding:3px 9px}
 .hero-chip svg{width:11px;height:11px;stroke:var(--s-400);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
 .hero-tutor{display:flex;align-items:center;gap:.6rem;padding:.7rem 1.1rem;border-top:1px solid var(--s-150);background:var(--s-100)}
-.hero-av{width:30px;height:30px;border-radius:50%;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:2px solid var(--white)}
+.hero-av{width:30px;height:30px;border-radius:50%;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:2px solid var(--white);background:var(--s-150);color:var(--s-600);box-shadow:0 0 0 2px var(--s-200)}
 .hero-tutor-info{flex:1;min-width:0}
 .hero-tutor-name{font-size:12px;font-weight:700;color:var(--s-800)}
 .hero-tutor-role{font-size:10px;color:var(--s-500)}
@@ -97,13 +97,6 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
 .chip-orange{background:var(--o-100);color:var(--o-700);border:1px solid var(--o-300)}
 .chip-blue{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-border)}
 .chip-purple{background:var(--purple-bg);color:var(--purple);border:1px solid var(--purple-border)}
-/* per-type accent (colour only — layout stays identical) */
-.accent-session .hero-icon,.accent-session .hero-tag{background:var(--o-500)}
-.accent-session .hero-av{background:var(--o-200);color:var(--o-700);box-shadow:0 0 0 2px var(--o-300)}
-.accent-editing .hero-icon,.accent-editing .hero-tag{background:var(--blue)}
-.accent-editing .hero-av{background:var(--blue-bg);color:var(--blue);box-shadow:0 0 0 2px var(--blue-border)}
-.accent-package .hero-icon,.accent-package .hero-tag{background:var(--purple)}
-.accent-package .hero-av{background:var(--purple-bg);color:var(--purple);box-shadow:0 0 0 2px var(--purple-border)}
 
 /* ── SUMMARY COST BREAKDOWN (dynamic per order type) ── */
 .sum-head{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--s-400);margin:.55rem 0 .05rem;display:flex;align-items:center;gap:.4rem}
@@ -161,6 +154,14 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
 .notice.blue{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-border)}
 .notice.blue svg{stroke:var(--blue)}
 .notice span{flex:1;min-width:0}
+
+/* UNIVERSAL PAYMENT ERROR BANNER (inline) */
+.pay-error{display:none;align-items:flex-start;gap:.55rem;background:var(--red-bg);border:1px solid var(--red-border);color:var(--red);border-radius:var(--r-md);padding:.7rem .85rem;margin-bottom:1rem;font-size:11.5px;line-height:1.5;animation:fadeUp .2s ease both}
+.pay-error.show{display:flex}
+.pay-error svg{width:15px;height:15px;stroke:var(--red);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;margin-top:1px}
+.pay-error strong{font-weight:800}
+.pay-error-x{margin-left:.35rem;background:none;border:none;color:var(--red);cursor:pointer;font-size:13px;line-height:1;padding:2px;flex-shrink:0;opacity:.6;font-family:'DM Sans',sans-serif}
+.pay-error-x:hover{opacity:1}
 
 /* DIVIDER */
 .divider{border:none;border-top:1px solid var(--s-150);margin:.8rem 0}
@@ -505,6 +506,13 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
             </div>
           </div>
           <div class="card-body">
+
+            <!-- UNIVERSAL PAYMENT ERROR (inline, not a popup) -->
+            <div class="pay-error" id="pay-error">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <div><strong>We couldn't process your payment.</strong> No charge was made — please check your details and try again, or choose a different payment method.</div>
+              <button class="pay-error-x" onclick="hidePayError()" aria-label="Dismiss">&#x2715;</button>
+            </div>
 
             <!-- METHOD SELECTOR (single row · Wallet last) -->
             <div class="pm-row">
@@ -1148,32 +1156,6 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
   </div>
 </div>
 
-<!-- ── FAILURE MODAL ── -->
-<div class="fail-overlay" id="fail-overlay">
-  <div class="fail-modal">
-    <div class="fail-icon">
-      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </div>
-    <div class="fail-title">Payment Unsuccessful</div>
-    <div class="fail-sub" id="fail-reason">Your card was declined by the issuing bank. No charge was made.</div>
-
-    <div class="fail-tips" id="fail-tips">
-      <div class="fail-tip-title">You can try:</div>
-      <ul id="fail-tip-list">
-        <li>Checking your card details and available balance</li>
-        <li>Using a different card or payment method</li>
-        <li>Contacting your bank if the problem persists</li>
-      </ul>
-    </div>
-
-    <div class="fail-code" id="fail-code">Ref: BK-20251128-4793-52010</div>
-    <div style="display:flex;flex-direction:column;align-items:center;gap:.5rem">
-      <button class="btn-retry" id="fail-retry" onclick="retryPayment()">↻ Try Again</button>
-      <button class="fail-link" onclick="chooseAnotherMethod()">Use a different payment method</button>
-    </div>
-  </div>
-</div>
-
 <script>
 // ── HERO ICONS (per accent) ──
 const ICONS = {
@@ -1274,8 +1256,6 @@ function totalDue(){
 // ── Populate the universal hero card from the active order ──
 function renderHero(){
   const o = ORDERS[currentOrder];
-  const hero = document.getElementById('hero');
-  hero.className = 'hero accent-' + o.accent;
   document.getElementById('hero-icon').innerHTML = ICONS[o.accent];
   document.getElementById('hero-tag').textContent = o.tag;
   document.getElementById('hero-title').textContent = o.title;
@@ -1393,6 +1373,7 @@ function switchOrder(type, btn){
   currentOrder = type;
   couponApplied = false;
   creditApplied = 0;
+  hidePayError();
 
   // reset performance bonus to this order's suggested amount
   bonusEnabled = true;
@@ -1464,6 +1445,7 @@ function updatePayBtn(){
 // ── PAYMENT METHOD SELECT ──
 function selectPM(el, type){
   currentPM = type;
+  hidePayError();
   document.querySelectorAll('.pm-option').forEach(o => o.classList.remove('active'));
   el.classList.add('active');
   document.getElementById('pm-card').style.display   = type === 'card' ? 'block' : 'none';
@@ -1615,18 +1597,18 @@ function setOutcome(mode, btn){
   btn.classList.add('active');
 }
 
-// Decide whether this attempt fails, and why.
-function paymentDecision(){
+// Decide whether this attempt fails (universal — reason is not surfaced to the user).
+function paymentWillFail(){
   if (currentPM === 'card'){
     const raw = (document.getElementById('card-num').value || '').replace(/\D/g,'');
-    if (DECLINE_CARDS[raw]) return { fail:true, kind:DECLINE_CARDS[raw] };
+    if (DECLINE_CARDS[raw]) return true;
   }
-  if (forceOutcome === 'decline') return { fail:true, kind: currentPM==='wallet' ? 'wallet' : currentPM==='card' ? 'generic' : 'qr' };
-  return { fail:false };
+  return forceOutcome === 'decline';
 }
 
 function confirmPay(){
   closeReview();
+  hidePayError();
 
   if (currentPM === 'wechat' || currentPM === 'alipay'){
     openQR(currentPM === 'wechat' ? 'WeChat Pay' : 'Alipay');
@@ -1637,50 +1619,22 @@ function confirmPay(){
   btn.classList.add('loading'); btn.disabled = true;
   const wasWallet = currentPM === 'wallet';
   const paid = totalDue();
-  const decision = paymentDecision();
+  const fail = paymentWillFail();
 
   setTimeout(() => {
     btn.classList.remove('loading'); btn.disabled = false;
-    if (decision.fail){
-      showFailure(decision.kind);        // no charge / no deduction
-      return;
-    }
+    if (fail){ showPayError(); return; }   // no charge / no deduction
     showConfirmation(paid, wasWallet);
   }, wasWallet ? 1400 : 2000);
 }
 
-// ── PAYMENT FAILURE ──
-function showFailure(kind){
-  const o = ORDERS[currentOrder];
-  const reasons = {
-    generic:     'Your card was declined by the issuing bank. No charge was made.',
-    insufficient:'Your card was declined due to insufficient funds. No charge was made.',
-    expired:     'Your card was declined — the card has expired. No charge was made.',
-    cvc:         "Your card's security code (CVC) could not be verified. No charge was made.",
-    wallet:      "We couldn't complete your VIPTutors Wallet payment due to a temporary error. Your balance was not charged.",
-    qr:          'The payment was cancelled or not completed in time. No charge was made.',
-  };
-  const tips = {
-    wallet: ['Trying again in a few moments','Paying with a card instead','Contacting support if the problem persists'],
-    qr:     ['Scanning the code again with a stable connection','Making sure the payment app has enough balance','Choosing a card or wallet payment instead'],
-    default:['Checking your card details and available balance','Using a different card or payment method','Contacting your bank if the problem persists'],
-  };
-  document.getElementById('fail-reason').textContent = reasons[kind] || reasons.generic;
-  const list = document.getElementById('fail-tip-list');
-  list.innerHTML = (tips[kind] || tips.default).map(t => '<li>'+t+'</li>').join('');
-  document.getElementById('fail-code').textContent = 'Ref: ' + o.id + ' · not charged';
-  document.getElementById('fail-overlay').classList.add('show');
+// ── UNIVERSAL PAYMENT ERROR (inline banner, same message for every method) ──
+function showPayError(){
+  const el = document.getElementById('pay-error');
+  el.classList.add('show');
+  el.scrollIntoView({ behavior:'smooth', block:'center' });
 }
-
-function retryPayment(){
-  document.getElementById('fail-overlay').classList.remove('show');
-  confirmPay();   // re-attempt with the current method/details
-}
-
-function chooseAnotherMethod(){
-  document.getElementById('fail-overlay').classList.remove('show');
-  document.querySelector('.pm-row').scrollIntoView({ behavior:'smooth', block:'center' });
-}
+function hidePayError(){ document.getElementById('pay-error').classList.remove('show'); }
 
 // ── FULL-PAGE CONFIRMATION ──
 const PM_NAMES = { card:'Credit / Debit Card', wallet:'VIPTutors Wallet', wechat:'WeChat Pay', alipay:'Alipay' };
@@ -1694,7 +1648,6 @@ function showConfirmation(paid, wasWallet){
   document.getElementById('cf-method').textContent = 'via ' + PM_NAMES[currentPM];
 
   // order recap (reuse hero accent + icon)
-  document.getElementById('cf-accent').className = 'cf-order accent-' + o.accent;
   document.getElementById('cf-order-icon').innerHTML = ICONS[o.accent];
   document.getElementById('cf-tag').textContent = o.tag;
   document.getElementById('cf-title').textContent = o.title;
@@ -1790,12 +1743,11 @@ function openQR(method){
   setTimeout(() => {
     if (!document.getElementById('qr-overlay').classList.contains('show')) return;
     clearInterval(qrTimer);
-    const decision = paymentDecision();
-    if (decision.fail){
+    if (paymentWillFail()){
       document.getElementById('qr-status-text').textContent = 'Payment failed or cancelled';
       dot.style.background = 'var(--red)';
       dot.style.animation = 'none';
-      setTimeout(() => { closeQR(); showFailure('qr'); }, 1200);
+      setTimeout(() => { closeQR(); showPayError(); }, 1200);
       return;
     }
     document.getElementById('qr-status-text').textContent = 'Payment received! Confirming…';
@@ -1838,7 +1790,6 @@ function closeQR(){
 
 document.getElementById('qr-overlay').addEventListener('click', e => { if (e.target === e.currentTarget) closeQR(); });
 document.getElementById('review-overlay').addEventListener('click', e => { if(e.target===e.currentTarget) closeReview(); });
-document.getElementById('fail-overlay').addEventListener('click', e => { if(e.target===e.currentTarget) e.currentTarget.classList.remove('show'); });
 
 // initial paint
 render();
