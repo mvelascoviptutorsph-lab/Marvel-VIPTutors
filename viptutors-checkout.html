@@ -1223,7 +1223,6 @@ const ORDERS = {
     performanceBonus:50,
     creditAvailable:120,
     detailsLabel:'View session details',
-    steps:['Your tutor confirms the session time','A secure video link appears in your dashboard','Join the session at the scheduled time'],
   },
   editing: {
     accent:'editing', tag:'Editorial Booking',
@@ -1243,7 +1242,6 @@ const ORDERS = {
     performanceBonus:100,
     creditAvailable:120,
     detailsLabel:'View editorial booking',
-    steps:['An editor is matched to your assignments','You are notified when editing begins','Review and download files from your dashboard'],
   },
   package: {
     accent:'package', tag:'Marketplace Package',
@@ -1261,7 +1259,6 @@ const ORDERS = {
     performanceBonus:200,
     creditAvailable:120,
     detailsLabel:'View package details',
-    steps:['Your specialists are assigned to the bundle','Schedule each session from your dashboard','Track progress across all services in one place'],
   }
 };
 
@@ -1683,6 +1680,13 @@ function hidePayError(){ document.getElementById('pay-error').classList.remove('
 // ── FULL-PAGE CONFIRMATION ──
 const PM_NAMES = { card:'Credit / Debit Card', wallet:'VIPTutors Wallet', wechat:'WeChat Pay', alipay:'Alipay' };
 
+// Universal next-steps — applies to every booking type
+const NEXT_STEPS = [
+  'Your order is confirmed and a receipt has been emailed to you',
+  'Your tutor will be assigned and notified to get started',
+  'Track progress and manage everything from your dashboard',
+];
+
 function showConfirmation(paid, wasWallet){
   const o = ORDERS[currentOrder];
 
@@ -1736,7 +1740,7 @@ function showConfirmation(paid, wasWallet){
   // manage-booking link + next steps (universal, per-type copy)
   document.getElementById('cf-booking-title').textContent = o.detailsLabel;
   document.getElementById('cf-cta-ic').innerHTML = ICONS[o.accent];
-  document.getElementById('cf-steps').innerHTML = o.steps.map(s => '<li>'+s+'</li>').join('');
+  document.getElementById('cf-steps').innerHTML = NEXT_STEPS.map(s => '<li>'+s+'</li>').join('');
 
   document.getElementById('confirm-page').classList.add('show');
   window.scrollTo(0,0);
