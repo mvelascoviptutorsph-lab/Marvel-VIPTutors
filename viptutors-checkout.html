@@ -353,6 +353,21 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
 .cf-wallet .swv{font-family:'DM Mono',monospace;font-weight:700;color:var(--s-800)}
 .cf-wallet .swrow.new{border-top:1px dashed var(--s-200);margin-top:.3rem;padding-top:.4rem}
 .cf-wallet .swrow.new .swv{color:var(--s-900);font-size:13px}
+/* primary product CTA (most prominent) */
+.cf-cta{display:flex;align-items:center;gap:.75rem;padding:.9rem 1rem;border-radius:var(--r-lg);text-decoration:none;background:linear-gradient(135deg,var(--o-100),#fff 82%);border:1.5px solid var(--o-300);box-shadow:0 6px 18px rgba(249,115,22,.14);transition:transform .18s,box-shadow .18s,border-color .18s;margin-bottom:.6rem}
+.cf-cta:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(249,115,22,.22);border-color:var(--o-400)}
+.cf-cta-ic{width:38px;height:38px;border-radius:10px;background:var(--o-500);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cf-cta-ic svg{width:19px;height:19px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.cf-cta-txt{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.3}
+.cf-cta-title{font-size:13px;font-weight:800;color:var(--o-800)}
+.cf-cta-sub{font-size:10.5px;color:var(--o-700);opacity:.85}
+.cf-cta .chev{width:16px;height:16px;stroke:var(--o-500);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+/* secondary: My Orders */
+.cf-orders{display:flex;align-items:center;gap:.65rem;padding:.75rem .85rem;border-radius:var(--r-md);text-decoration:none;background:var(--white);border:1.5px solid var(--s-200);transition:all .15s;margin-bottom:1rem}
+.cf-orders:hover{border-color:var(--s-400);transform:translateY(-1px);box-shadow:var(--sh-sm)}
+.cf-orders-ic{width:34px;height:34px;border-radius:9px;background:var(--s-800);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cf-orders-ic svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.cf-orders .chev{width:15px;height:15px;stroke:var(--s-400);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
 .cf-links{display:flex;flex-direction:column;gap:.5rem}
 .cf-link{display:flex;align-items:center;gap:.65rem;padding:.65rem .75rem;border:1px solid var(--s-200);border-radius:var(--r-md);text-decoration:none;transition:all .15s;background:var(--white)}
 .cf-link:hover{border-color:var(--o-300);background:var(--o-100);transform:translateX(2px)}
@@ -1141,14 +1156,26 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
 
       <!-- NEXT STEPS / LINKS -->
       <div>
+        <!-- PRIMARY CTA: the product / booking page (most likely to be clicked) -->
+        <a class="cf-cta" id="cf-booking-link" href="#" onclick="return false">
+          <span class="cf-cta-ic" id="cf-cta-ic"></span>
+          <span class="cf-cta-txt">
+            <span class="cf-cta-title" id="cf-booking-title">View booking details</span>
+            <span class="cf-cta-sub">Open your booking's page</span>
+          </span>
+          <svg class="chev" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+
+        <!-- SECONDARY CTA: all purchases -->
+        <a class="cf-orders" id="cf-orders-link" href="#" onclick="return false">
+          <span class="cf-orders-ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
+          <span class="cf-link-txt"><span class="cf-link-title">My Orders</span><span class="cf-link-sub">View all your purchases &amp; bookings</span></span>
+          <svg class="chev" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+
         <div class="card" style="margin-bottom:1rem">
-          <div class="card-header"><div class="card-title">Manage your booking</div></div>
+          <div class="card-header"><div class="card-title">More options</div></div>
           <div class="card-body cf-links">
-            <a class="cf-link" href="#" onclick="return false" id="cf-booking-link">
-              <span class="cf-link-ic"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
-              <span class="cf-link-txt"><span class="cf-link-title" id="cf-booking-title">View booking details</span><span class="cf-link-sub">See the full details of this order</span></span>
-              <svg class="chev" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-            </a>
             <a class="cf-link" href="#" onclick="return false">
               <span class="cf-link-ic"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>
               <span class="cf-link-txt"><span class="cf-link-title">Download receipt</span><span class="cf-link-sub">PDF invoice for your records</span></span>
@@ -1708,6 +1735,7 @@ function showConfirmation(paid, wasWallet){
 
   // manage-booking link + next steps (universal, per-type copy)
   document.getElementById('cf-booking-title').textContent = o.detailsLabel;
+  document.getElementById('cf-cta-ic').innerHTML = ICONS[o.accent];
   document.getElementById('cf-steps').innerHTML = o.steps.map(s => '<li>'+s+'</li>').join('');
 
   document.getElementById('confirm-page').classList.add('show');
