@@ -348,6 +348,7 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
 .cf-pay-method{font-weight:700;color:var(--s-800)}
 .cf-wallet{margin-top:.7rem;border:1px solid var(--s-200);background:var(--s-100);border-radius:var(--r-md);padding:.6rem .8rem;display:none}
 .cf-wallet.show{display:block}
+.cf-box-head{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--s-500);margin-bottom:.3rem}
 .cf-wallet .swrow{display:flex;justify-content:space-between;font-size:11.5px;padding:.15rem 0}
 .cf-wallet .swk{color:var(--s-600)}
 .cf-wallet .swv{font-family:'DM Mono',monospace;font-weight:700;color:var(--s-800)}
@@ -1151,6 +1152,12 @@ body{font-family:'DM Sans',system-ui,sans-serif;background:var(--s-100);color:va
             <div class="swrow"><span class="swk">Previous balance</span><span class="swv" id="cf-sw-prev">—</span></div>
             <div class="swrow new"><span class="swk">New wallet balance</span><span class="swv" id="cf-sw-new">—</span></div>
           </div>
+          <div class="cf-wallet" id="cf-credit-box">
+            <div class="cf-box-head">💳 Platform Credit</div>
+            <div class="swrow"><span class="swk">Applied to this order</span><span class="swv" id="cf-credit-applied">—</span></div>
+            <div class="swrow"><span class="swk">Previous credit balance</span><span class="swv" id="cf-credit-prev">—</span></div>
+            <div class="swrow new"><span class="swk" id="cf-credit-remain-label">Remaining credit</span><span class="swv" id="cf-credit-remain">—</span></div>
+          </div>
         </div>
       </div>
 
@@ -1735,6 +1742,19 @@ function showConfirmation(paid, wasWallet){
     document.getElementById('pm-wallet-sub').textContent = fmt(next);
   } else {
     cfWallet.classList.remove('show');
+  }
+
+  // platform credit summary — redeemed this order + remaining balance
+  const cfCredit = document.getElementById('cf-credit-box');
+  if (o.creditAvailable > 0){
+    const prev = o.creditAvailable, remain = prev - creditApplied;
+    cfCredit.classList.add('show');
+    document.getElementById('cf-credit-applied').textContent = creditApplied > 0 ? '−'+fmt(creditApplied) : fmt(0);
+    document.getElementById('cf-credit-prev').textContent = fmt(prev);
+    document.getElementById('cf-credit-remain-label').textContent = creditApplied > 0 ? 'Remaining credit' : 'Credit balance (saved)';
+    animateValue(document.getElementById('cf-credit-remain'), prev, remain, 700);
+  } else {
+    cfCredit.classList.remove('show');
   }
 
   // manage-booking link + next steps (universal, per-type copy)
