@@ -279,7 +279,8 @@ const TEAM = [
     id:'dawson', letter:'D', bg:'#FFE3EC', fg:'#E11D6B',
     name:'Dawson Gao', role:'Founder & Owner', owner:true, online:true,
     location:'United Kingdom (GMT+1)', timezone:'(GMT+1) Europe/London',
-    country:'United Kingdom', age:34, gender:'Male',
+    department:'Leadership · Admissions', levels:'Undergraduate → Postgraduate',
+    languages:['English','Mandarin'], specialities:['Admissions Strategy','Personal Statements','Interview Prep'],
     since:'2015', email:'dawson@edlab.co.uk',
     tagline:'Turning ambitious applications into offers from the world’s best universities.',
     bio:'I’m an economist and admissions strategist who founded EDLAB to give students the mentorship I wish I’d had. Fifteen years guiding applicants into the world’s top universities — I now lead admissions strategy across the UK and US while still working with a small cohort each cycle.',
@@ -296,7 +297,8 @@ const TEAM = [
     id:'amelia', letter:'A', bg:'#FDE7F1', fg:'#C2266B',
     name:'Dr. Amelia Chan', role:'Head of Admissions', owner:false, online:true,
     location:'United Kingdom (GMT+1)', timezone:'(GMT+1) Europe/London',
-    country:'United Kingdom', age:38, gender:'Female',
+    department:'Admissions', levels:'GCSE → PhD',
+    languages:['English','Cantonese','Mandarin'], specialities:['Oxbridge Admissions','Chemistry','Interview Prep'],
     since:'2017', email:'amelia@edlab.co.uk',
     tagline:'Making complex science genuinely accessible — from GCSE to PhD.',
     bio:'I’m a Harvard-trained chemist with a passion for making complex topics genuinely accessible. As a former research fellow, I’ve spent over six years helping students at every level — from GCSE to PhD — not just pass exams, but develop real scientific intuition. My philosophy is simple: every student can achieve extraordinary results with the right mentor.',
@@ -314,7 +316,8 @@ const TEAM = [
     id:'marcus', letter:'M', bg:'#E7F6EC', fg:'#15803D',
     name:'Marcus Lee', role:'Senior Maths Tutor', owner:false, online:false,
     location:'United Kingdom (GMT+1)', timezone:'(GMT+1) Europe/London',
-    country:'United Kingdom', age:29, gender:'Male',
+    department:'Tutoring', levels:'GCSE → A-Level',
+    languages:['English'], specialities:['A-Level Maths','Further Maths','STEP & MAT prep'],
     since:'2020', email:'marcus@edlab.co.uk',
     tagline:'Exam technique that turns hard maths into top grades.',
     bio:'Senior Maths tutor focused on A-Level and Further Maths. I help students turn exam technique into top grades, and I’m known for STEP and MAT preparation and a calm, structured teaching style.',
@@ -330,7 +333,8 @@ const TEAM = [
     id:'sofia', letter:'S', bg:'#EAF0FE', fg:'#2450C8',
     name:'Sofia Reyes', role:'Admissions Consultant', owner:false, online:true,
     location:'Spain (GMT+2)', timezone:'(GMT+2) Europe/Madrid',
-    country:'Spain', age:31, gender:'Female',
+    department:'Admissions', levels:'High school → Undergraduate',
+    languages:['English','Spanish'], specialities:['US Admissions','Personal Statements','Scholarships'],
     since:'2022', email:'sofia@edlab.co.uk',
     tagline:'Guiding international students to US offers and scholarships.',
     bio:'Admissions consultant specialising in US applications and scholarship strategy for international students. I guide applicants through the Common App, essays and the financial-aid process.',
@@ -346,7 +350,8 @@ const TEAM = [
     id:'james', letter:'J', bg:'#F1EAFE', fg:'#6D28D9',
     name:'James Okafor', role:'Physics & Engineering Tutor', owner:false, online:false,
     location:'United Kingdom (GMT+1)', timezone:'(GMT+1) Europe/London',
-    country:'United Kingdom', age:33, gender:'Male',
+    department:'Tutoring', levels:'A-Level → Undergraduate',
+    languages:['English'], specialities:['A-Level Physics','Engineering Admissions','PAT / ESAT prep'],
     since:'2021', email:'james@edlab.co.uk',
     tagline:'Physics and engineering prep with a problem-first approach.',
     bio:'Physics and engineering tutor preparing students for competitive STEM courses. I specialise in the PAT, ESAT and engineering interviews, with a practical, problem-first approach.',
@@ -376,7 +381,10 @@ const P = {
   'user-round':'<circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/>',
   calendar:'<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/>',
   award:'<path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/>',
-  cake:'<path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/><path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"/><path d="M2 21h20"/><path d="M7 8v3"/><path d="M12 8v3"/><path d="M17 8v3"/><path d="M7 4h.01"/><path d="M12 4h.01"/><path d="M17 4h.01"/>'
+  users:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  languages:'<path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/>',
+  sparkles:'<path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"/>',
+  layers:'<path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/>'
 };
 function ic(name, cls){
   return `<svg class="ic ${cls||''}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${P[name]||''}</svg>`;
@@ -458,13 +466,13 @@ function renderDetail(){
       </div>
 
       <div class="card">
-        <div class="card-h">${ic('user-round')}<span class="l">More info</span></div>
+        <div class="card-h">${ic('info')}<span class="l">More info</span></div>
         <div class="card-b">
           <div class="info-grid">
-            ${infoItem('cake','Age', m.age)}
-            ${infoItem('user-round','Gender', m.gender)}
-            ${infoItem('globe','Country', m.country)}
-            ${infoItem('clock','Timezone', m.timezone)}
+            ${infoItem('users','Department', m.department)}
+            ${infoItem('layers','Works with', m.levels)}
+            ${infoItem('sparkles','Specialities', m.specialities.join(' · '))}
+            ${infoItem('languages','Languages', m.languages.join(', '))}
           </div>
         </div>
       </div>
