@@ -137,7 +137,7 @@ button{ font-family:inherit; cursor:pointer; }
 
 /* ---------- Right detail ---------- */
 .detail{ overflow-y:auto; min-height:0; }
-.detail-inner{ max-width:1000px; margin:0 auto; padding:26px 34px 60px; }
+.detail-inner{ max-width:840px; margin:0 auto; padding:26px 40px 64px; }
 
 /* crumb */
 .crumb{ display:flex; align-items:center; gap:7px; font-size:12px; color:var(--ink-400); margin-bottom:16px; }
@@ -191,11 +191,10 @@ button{ font-family:inherit; cursor:pointer; }
 .kpi .l{ font-size:11.5px; color:var(--ink-500); margin-top:3px; display:flex; align-items:center; gap:5px; }
 .kpi .l .ic{ width:13px; height:13px; color:var(--brand-500); }
 
-/* content grid */
-.grid{ display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:20px; margin-top:22px; align-items:start; }
+/* single-column content flow (the roster rail is the only sidebar) */
+.stack{ display:flex; flex-direction:column; gap:16px; margin-top:22px; }
 
 .card{ background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; }
-.card + .card{ margin-top:16px; }
 .card-h{ display:flex; align-items:center; gap:9px; padding:13px 18px; background:var(--panel-2); border-bottom:1px solid var(--border); }
 .card-h .ic{ color:var(--ink-400); }
 .card-h .l{ font-family:"Plus Jakarta Sans"; font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-500); }
@@ -223,22 +222,23 @@ button{ font-family:inherit; cursor:pointer; }
 .r-list li{ font-size:13px; color:var(--ink-600); display:flex; gap:8px; margin-top:4px; line-height:1.5; }
 .r-list li::before{ content:"–"; color:var(--ink-300); }
 
-/* side rail cards */
-.side .card-b{ padding:16px 18px; }
-.kv{ display:flex; flex-direction:column; gap:12px; }
-.kv .item{ display:flex; gap:11px; align-items:flex-start; font-size:13px; }
-.kv .item .ic{ color:var(--ink-400); margin-top:1px; }
-.kv .k{ color:var(--ink-500); width:78px; flex:none; }
-.kv .v{ color:var(--ink-900); font-weight:500; word-break:break-word; }
-.side-cta{ display:flex; flex-direction:column; gap:9px; margin-top:16px; padding-top:16px; border-top:1px solid var(--border-2); }
+/* contact facts — laid out horizontally within the single column */
+.facts{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 28px; }
+.facts .f{ display:flex; flex-direction:column; gap:3px; min-width:0; }
+.facts .f.wide{ grid-column:1 / -1; }
+.facts .k{ font-size:10.5px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-400); display:flex; align-items:center; gap:6px; }
+.facts .k .ic{ width:13px; height:13px; color:var(--ink-400); }
+.facts .v{ font-size:14px; font-weight:500; color:var(--ink-900); word-break:break-word; }
 
-.org-card{ display:flex; gap:12px; align-items:center; }
-.org-card .logo{ width:44px; height:44px; border-radius:11px; background:var(--brand-100); color:var(--brand-600); display:flex; align-items:center; justify-content:center; font-family:"Plus Jakarta Sans"; font-weight:800; font-size:18px; flex:none; }
-.org-card .o-name{ font-weight:700; font-size:14px; }
-.org-card .o-sub{ font-size:12px; color:var(--ink-500); margin-top:1px; }
-.org-meta{ margin-top:14px; display:flex; flex-direction:column; gap:9px; }
-.org-meta .item{ display:flex; gap:9px; align-items:center; font-size:12.5px; color:var(--ink-600); }
-.org-meta .item .ic{ width:14px; height:14px; color:var(--ink-400); }
+/* organization — horizontal strip */
+.org-strip{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+.org-strip .logo{ width:46px; height:46px; border-radius:11px; background:var(--brand-100); color:var(--brand-600); display:flex; align-items:center; justify-content:center; font-family:"Plus Jakarta Sans"; font-weight:800; font-size:18px; flex:none; }
+.org-strip .o-id{ min-width:0; }
+.org-strip .o-name{ font-weight:700; font-size:15px; }
+.org-strip .o-sub{ font-size:12.5px; color:var(--ink-500); margin-top:1px; }
+.org-strip .o-meta{ margin-left:auto; display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+.org-strip .o-meta .item{ display:flex; gap:7px; align-items:center; font-size:12.5px; color:var(--ink-600); }
+.org-strip .o-meta .item .ic{ width:14px; height:14px; color:var(--ink-400); }
 
 /* fade on member switch */
 .swap{ animation:fade .22s ease; }
@@ -246,9 +246,10 @@ button{ font-family:inherit; cursor:pointer; }
 @media (prefers-reduced-motion:reduce){ .swap{ animation:none; } }
 
 /* narrow-but-still-desktop guard */
-@media (max-width:1080px){
+@media (max-width:900px){
   .kpis{ grid-template-columns:repeat(2,1fr); }
-  .grid{ grid-template-columns:minmax(0,1fr); }
+  .facts{ grid-template-columns:1fr; }
+  .org-strip .o-meta{ margin-left:0; width:100%; }
 }
 </style>
 
@@ -493,56 +494,50 @@ function renderDetail(){
       ${tile(m.yearsWith,'With EDLAB','clock')}
     </div>
 
-    <div class="grid">
-      <!-- main column -->
-      <div>
-        <div class="card">
-          <div class="card-h">${ic('user-round')}<span class="l">Professional summary</span></div>
-          <div class="card-b"><p class="summary">${esc(m.bio)}</p></div>
-        </div>
-        <div class="card">
-          <div class="card-h">${ic('sparkles')}<span class="l">Areas of expertise</span></div>
-          <div class="card-b"><div class="chips">${m.focus.map(f=>`<span class="chip">${ic('check')}${esc(f)}</span>`).join('')}</div></div>
-        </div>
-        <div class="card">
-          <div class="card-h">${ic('graduation-cap')}<span class="l">Education &amp; credentials</span></div>
-          <div class="card-b">${m.edu.map(eduRow).join('')}</div>
-        </div>
-        <div class="card">
-          <div class="card-h">${ic('briefcase')}<span class="l">Professional experience</span></div>
-          <div class="card-b">${m.work.map(workRow).join('')}</div>
+    <div class="stack">
+      <div class="card">
+        <div class="card-h">${ic('user-round')}<span class="l">Professional summary</span></div>
+        <div class="card-b"><p class="summary">${esc(m.bio)}</p></div>
+      </div>
+
+      <div class="card">
+        <div class="card-h">${ic('sparkles')}<span class="l">Areas of expertise</span></div>
+        <div class="card-b"><div class="chips">${m.focus.map(f=>`<span class="chip">${ic('check')}${esc(f)}</span>`).join('')}</div></div>
+      </div>
+
+      <div class="card">
+        <div class="card-h">${ic('graduation-cap')}<span class="l">Education &amp; credentials</span></div>
+        <div class="card-b">${m.edu.map(eduRow).join('')}</div>
+      </div>
+
+      <div class="card">
+        <div class="card-h">${ic('briefcase')}<span class="l">Professional experience</span></div>
+        <div class="card-b">${m.work.map(workRow).join('')}</div>
+      </div>
+
+      <div class="card">
+        <div class="card-h">${ic('at-sign')}<span class="l">Contact</span></div>
+        <div class="card-b">
+          <div class="facts">
+            <div class="f wide"><span class="k">${ic('mail')}Email</span><span class="v">${esc(m.email)}</span></div>
+            <div class="f"><span class="k">${ic('languages')}Languages</span><span class="v">${m.languages.map(esc).join(', ')}</span></div>
+            <div class="f"><span class="k">${ic('clock')}Timezone</span><span class="v">${esc(m.timezone)}</span></div>
+            <div class="f"><span class="k">${ic('map-pin')}Based in</span><span class="v">${esc(m.location)}</span></div>
+            <div class="f"><span class="k">${ic('calendar-plus')}At EDLAB</span><span class="v">Since ${esc(m.since)}</span></div>
+          </div>
         </div>
       </div>
 
-      <!-- side column -->
-      <div class="side">
-        <div class="card">
-          <div class="card-h">${ic('at-sign')}<span class="l">Contact &amp; booking</span></div>
-          <div class="card-b">
-            <div class="kv">
-              <div class="item">${ic('mail')}<span class="k">Email</span><span class="v">${esc(m.email)}</span></div>
-              <div class="item">${ic('languages')}<span class="k">Languages</span><span class="v">${m.languages.map(esc).join(', ')}</span></div>
-              <div class="item">${ic('clock')}<span class="k">Timezone</span><span class="v">${esc(m.timezone)}</span></div>
-              <div class="item">${ic('calendar-plus')}<span class="k">At EDLAB</span><span class="v">Since ${esc(m.since)}</span></div>
+      <div class="card">
+        <div class="card-h">${ic('building-2')}<span class="l">Organization</span></div>
+        <div class="card-b">
+          <div class="org-strip">
+            <div class="logo">E</div>
+            <div class="o-id">
+              <div class="o-name">EDLAB</div>
+              <div class="o-sub">Admissions consulting &amp; elite tutoring</div>
             </div>
-            <div class="side-cta">
-              <button class="btn btn-primary full">${ic('calendar-plus')}Book a consultation</button>
-              <button class="btn btn-ghost full">${ic('send')}Send a message</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-h">${ic('building-2')}<span class="l">Organization</span></div>
-          <div class="card-b">
-            <div class="org-card">
-              <div class="logo">E</div>
-              <div>
-                <div class="o-name">EDLAB</div>
-                <div class="o-sub">Admissions consulting &amp; elite tutoring</div>
-              </div>
-            </div>
-            <div class="org-meta">
+            <div class="o-meta">
               <div class="item">${ic('map-pin')}Mayfair, London W1S</div>
               <div class="item">${ic('globe')}edlab.co.uk</div>
               <div class="item">${ic('users')}${TEAM.length} team members</div>
