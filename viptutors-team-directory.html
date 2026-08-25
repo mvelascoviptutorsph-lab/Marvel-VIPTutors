@@ -1,0 +1,588 @@
+<title>EDLAB Team Directory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+:root{
+  --bg:#F4F5F7;
+  --panel:#FFFFFF;
+  --panel-2:#FBFAF8;
+  --panel-3:#F8F9FB;
+  --border:#E7E9EE;
+  --border-2:#EEF0F3;
+  --ink-900:#14141F;
+  --ink-700:#374151;
+  --ink-600:#4B5563;
+  --ink-500:#6B7280;
+  --ink-400:#9CA3AF;
+  --ink-300:#CBD0D8;
+  --brand-700:#B95608;
+  --brand-600:#EA6A0A;
+  --brand-500:#F97316;
+  --brand-100:#FFE7D1;
+  --brand-50:#FFF4EA;
+  --success:#16A34A;
+  --success-fg:#15803D;
+  --success-bg:#E9F7EE;
+  --shadow:0 1px 2px rgba(20,20,31,.05);
+  --shadow-md:0 6px 20px rgba(20,20,31,.08);
+  --radius:14px;
+}
+
+*{ box-sizing:border-box; }
+html,body{ margin:0; height:100%; }
+body{
+  background:var(--bg);
+  color:var(--ink-900);
+  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased;
+  font-size:14px;
+  line-height:1.5;
+}
+h1,h2,h3,.head{ font-family:"Plus Jakarta Sans",Inter,sans-serif; }
+button{ font-family:inherit; cursor:pointer; }
+.ic{ width:16px; height:16px; flex:none; }
+.tnum{ font-variant-numeric:tabular-nums; }
+
+/* ---------- App shell ---------- */
+.app{
+  display:grid;
+  grid-template-columns:340px minmax(0,1fr);
+  height:100vh;
+  min-height:0;
+}
+
+/* ---------- Left rail (roster) ---------- */
+.rail{
+  background:var(--panel);
+  border-right:1px solid var(--border);
+  display:flex;
+  flex-direction:column;
+  min-height:0;
+}
+.rail-head{
+  padding:18px 18px 14px;
+  border-bottom:1px solid var(--border);
+}
+.brand{
+  display:flex; align-items:center; gap:10px;
+}
+.brand .logo{
+  width:34px; height:34px; border-radius:9px;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--brand-100); color:var(--brand-600);
+  font-family:"Plus Jakarta Sans"; font-weight:800; font-size:16px;
+}
+.brand .b-name{ font-family:"Plus Jakarta Sans"; font-weight:800; font-size:16px; letter-spacing:-.01em; }
+.brand .b-sub{ font-size:11.5px; color:var(--ink-500); margin-top:1px; }
+.rail-title{
+  display:flex; align-items:baseline; gap:8px; margin-top:16px;
+}
+.rail-title .t{ font-family:"Plus Jakarta Sans"; font-weight:700; font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-500); }
+.rail-title .c{ font-size:12px; color:var(--ink-400); }
+.rail-title .c b{ color:var(--success-fg); font-weight:600; }
+
+.search{
+  position:relative; margin-top:12px;
+}
+.search .ic{ position:absolute; left:11px; top:50%; transform:translateY(-50%); color:var(--ink-400); }
+.search input{
+  width:100%; border:1px solid var(--border); background:var(--panel-3);
+  border-radius:10px; padding:9px 12px 9px 34px; font-size:13px; color:var(--ink-900);
+  outline:none; transition:border-color .15s, box-shadow .15s, background .15s;
+}
+.search input::placeholder{ color:var(--ink-400); }
+.search input:focus{ background:#fff; border-color:var(--brand-500); box-shadow:0 0 0 3px rgba(249,115,22,.14); }
+
+.roster{ overflow-y:auto; padding:8px; flex:1; min-height:0; }
+.member{
+  display:flex; gap:11px; width:100%; text-align:left;
+  padding:11px 12px; border-radius:12px; border:1px solid transparent;
+  background:transparent; transition:background .12s, border-color .12s;
+  align-items:flex-start;
+}
+.member:hover{ background:var(--panel-3); }
+.member.active{ background:var(--brand-50); border-color:var(--brand-100); }
+.member:focus-visible{ outline:none; box-shadow:0 0 0 3px rgba(249,115,22,.25); }
+
+.ava{
+  position:relative; flex:none;
+  width:42px; height:42px; border-radius:11px;
+  display:flex; align-items:center; justify-content:center;
+  font-family:"Plus Jakarta Sans"; font-weight:700; font-size:16px;
+}
+.ava .dot{
+  position:absolute; right:-2px; bottom:-2px;
+  width:12px; height:12px; border-radius:50%;
+  border:2.5px solid var(--panel); background:var(--ink-300);
+}
+.member.active .ava .dot{ border-color:var(--brand-50); }
+.ava .dot.on{ background:var(--success); }
+
+.m-main{ min-width:0; flex:1; }
+.m-top{ display:flex; align-items:center; gap:6px; }
+.m-name{ font-weight:600; font-size:14px; color:var(--ink-900); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.m-crown{ color:var(--brand-500); width:13px; height:13px; flex:none; }
+.m-role{ font-size:12.5px; color:var(--ink-600); margin-top:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.m-meta{ display:flex; align-items:center; gap:5px; font-size:11.5px; color:var(--ink-400); margin-top:5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.m-meta .ic{ width:12px; height:12px; }
+.m-meta .sep{ opacity:.5; }
+.member.active .m-role{ color:var(--brand-700); }
+
+.rail-foot{
+  border-top:1px solid var(--border); padding:12px 18px;
+  font-size:11.5px; color:var(--ink-400); display:flex; align-items:center; gap:7px;
+}
+
+/* ---------- Right detail ---------- */
+.detail{ overflow-y:auto; min-height:0; }
+.detail-inner{ max-width:1000px; margin:0 auto; padding:26px 34px 60px; }
+
+/* crumb */
+.crumb{ display:flex; align-items:center; gap:7px; font-size:12px; color:var(--ink-400); margin-bottom:16px; }
+.crumb b{ color:var(--ink-600); font-weight:600; }
+.crumb .ic{ width:13px; height:13px; }
+
+/* identity header (no hero banner) */
+.idhead{
+  display:flex; align-items:flex-start; gap:20px; flex-wrap:wrap;
+}
+.idhead .big{
+  width:84px; height:84px; border-radius:20px; flex:none;
+  display:flex; align-items:center; justify-content:center;
+  font-family:"Plus Jakarta Sans"; font-weight:700; font-size:32px;
+  box-shadow:inset 0 0 0 1px rgba(20,20,31,.05);
+}
+.id-body{ flex:1; min-width:260px; }
+.id-name-row{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.id-name{ font-family:"Plus Jakarta Sans"; font-weight:800; font-size:26px; letter-spacing:-.02em; line-height:1.1; }
+.id-role{ font-size:15px; font-weight:600; color:var(--ink-700); margin-top:4px; }
+.id-role .org{ color:var(--brand-600); }
+.id-facts{ display:flex; align-items:center; flex-wrap:wrap; gap:6px 16px; margin-top:11px; font-size:13px; color:var(--ink-500); }
+.id-facts span{ display:inline-flex; align-items:center; gap:6px; }
+.id-facts .ic{ color:var(--ink-400); }
+.presence{ font-weight:600; }
+.presence.on{ color:var(--success-fg); }
+.presence.off{ color:var(--ink-400); }
+.presence .pdot{ width:8px; height:8px; border-radius:50%; background:var(--ink-300); }
+.presence.on .pdot{ background:var(--success); }
+
+.id-actions{ display:flex; gap:9px; flex:none; padding-top:4px; }
+
+/* badges + buttons */
+.tag{ display:inline-flex; align-items:center; gap:5px; font-size:11.5px; font-weight:700; padding:3px 9px; border-radius:999px; letter-spacing:.01em; }
+.tag.owner{ background:var(--brand-50); color:var(--brand-600); }
+.tag.verified{ background:var(--success-bg); color:var(--success-fg); }
+.tag.level{ background:var(--brand-50); color:var(--brand-700); font-weight:600; }
+
+.btn{ display:inline-flex; align-items:center; gap:7px; font-weight:600; font-size:13.5px; border-radius:10px; padding:9px 15px; border:1px solid transparent; transition:.14s; }
+.btn:focus-visible{ outline:none; box-shadow:0 0 0 3px rgba(249,115,22,.32); }
+.btn-primary{ background:var(--brand-500); color:#fff; }
+.btn-primary:hover{ background:var(--brand-600); }
+.btn-ghost{ background:#fff; color:var(--ink-700); border-color:var(--border); }
+.btn-ghost:hover{ background:var(--panel-3); }
+.btn.full{ width:100%; justify-content:center; }
+
+/* KPI tiles */
+.kpis{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:24px; }
+.kpi{ background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:14px 16px; box-shadow:var(--shadow); }
+.kpi .n{ font-family:"Plus Jakarta Sans"; font-weight:800; font-size:22px; letter-spacing:-.01em; color:var(--ink-900); }
+.kpi .l{ font-size:11.5px; color:var(--ink-500); margin-top:3px; display:flex; align-items:center; gap:5px; }
+.kpi .l .ic{ width:13px; height:13px; color:var(--brand-500); }
+
+/* content grid */
+.grid{ display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:20px; margin-top:22px; align-items:start; }
+
+.card{ background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; }
+.card + .card{ margin-top:16px; }
+.card-h{ display:flex; align-items:center; gap:9px; padding:13px 18px; background:var(--panel-2); border-bottom:1px solid var(--border); }
+.card-h .ic{ color:var(--ink-400); }
+.card-h .l{ font-family:"Plus Jakarta Sans"; font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-500); }
+.card-b{ padding:18px; }
+.card-b p{ margin:0; }
+.summary{ font-size:14.5px; line-height:1.65; color:var(--ink-700); }
+
+/* chips */
+.chips{ display:flex; flex-wrap:wrap; gap:8px; }
+.chip{ display:inline-flex; align-items:center; gap:6px; padding:7px 12px; border-radius:9px; font-size:13px; font-weight:500; color:var(--ink-700); background:var(--panel-3); border:1px solid var(--border); }
+.chip .ic{ width:14px; height:14px; color:var(--brand-500); }
+
+/* timeline rows (edu / work) */
+.row{ display:flex; gap:13px; padding:15px 0; border-bottom:1px solid var(--border-2); }
+.row:first-child{ padding-top:2px; }
+.row:last-child{ border-bottom:0; padding-bottom:2px; }
+.row .r-ic{ width:30px; height:30px; border-radius:8px; background:var(--panel-3); border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex:none; color:var(--ink-500); }
+.row .r-main{ flex:1; min-width:0; }
+.r-top{ display:flex; justify-content:space-between; gap:12px; align-items:baseline; }
+.r-title{ font-weight:600; font-size:14px; color:var(--ink-900); }
+.r-when{ font-size:12px; color:var(--ink-400); flex:none; }
+.r-sub{ font-size:13px; color:var(--ink-600); margin-top:1px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.r-note{ font-size:12.5px; color:var(--ink-500); margin-top:4px; }
+.r-list{ margin:6px 0 0; padding:0; list-style:none; }
+.r-list li{ font-size:13px; color:var(--ink-600); display:flex; gap:8px; margin-top:4px; line-height:1.5; }
+.r-list li::before{ content:"–"; color:var(--ink-300); }
+
+/* side rail cards */
+.side .card-b{ padding:16px 18px; }
+.kv{ display:flex; flex-direction:column; gap:12px; }
+.kv .item{ display:flex; gap:11px; align-items:flex-start; font-size:13px; }
+.kv .item .ic{ color:var(--ink-400); margin-top:1px; }
+.kv .k{ color:var(--ink-500); width:78px; flex:none; }
+.kv .v{ color:var(--ink-900); font-weight:500; word-break:break-word; }
+.side-cta{ display:flex; flex-direction:column; gap:9px; margin-top:16px; padding-top:16px; border-top:1px solid var(--border-2); }
+
+.org-card{ display:flex; gap:12px; align-items:center; }
+.org-card .logo{ width:44px; height:44px; border-radius:11px; background:var(--brand-100); color:var(--brand-600); display:flex; align-items:center; justify-content:center; font-family:"Plus Jakarta Sans"; font-weight:800; font-size:18px; flex:none; }
+.org-card .o-name{ font-weight:700; font-size:14px; }
+.org-card .o-sub{ font-size:12px; color:var(--ink-500); margin-top:1px; }
+.org-meta{ margin-top:14px; display:flex; flex-direction:column; gap:9px; }
+.org-meta .item{ display:flex; gap:9px; align-items:center; font-size:12.5px; color:var(--ink-600); }
+.org-meta .item .ic{ width:14px; height:14px; color:var(--ink-400); }
+
+/* fade on member switch */
+.swap{ animation:fade .22s ease; }
+@keyframes fade{ from{ opacity:0; transform:translateY(6px); } to{ opacity:1; transform:none; } }
+@media (prefers-reduced-motion:reduce){ .swap{ animation:none; } }
+
+/* narrow-but-still-desktop guard */
+@media (max-width:1080px){
+  .kpis{ grid-template-columns:repeat(2,1fr); }
+  .grid{ grid-template-columns:minmax(0,1fr); }
+}
+</style>
+
+<div class="app">
+  <!-- ============ LEFT: TEAM ROSTER ============ -->
+  <aside class="rail">
+    <div class="rail-head">
+      <div class="brand">
+        <div class="logo">E</div>
+        <div>
+          <div class="b-name">EDLAB</div>
+          <div class="b-sub">Admissions consulting &amp; elite tutoring</div>
+        </div>
+      </div>
+      <div class="rail-title">
+        <span class="t">Team</span>
+        <span class="c" id="rosterCount"></span>
+      </div>
+      <div class="search">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input id="searchInput" type="text" placeholder="Search team by name or role" autocomplete="off" />
+      </div>
+    </div>
+    <div class="roster" id="roster"></div>
+    <div class="rail-foot">
+      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span>Organization staff · internal directory</span>
+    </div>
+  </aside>
+
+  <!-- ============ RIGHT: SELECTED MEMBER ============ -->
+  <main class="detail">
+    <div class="detail-inner" id="detail"></div>
+  </main>
+</div>
+
+<script>
+/* ==================================================================
+   EDLAB Team Directory — master/detail preview
+   Left rail = roster of organization team members (essentials only).
+   Right pane = full corporate profile of the selected member.
+   ================================================================== */
+
+const TEAM = [
+  {
+    id:'dawson', letter:'D', bg:'#FFE3EC', fg:'#E11D6B',
+    name:'Dawson Gao', role:'Founder & Owner', owner:true, online:true,
+    location:'London, United Kingdom', timezone:'Europe/London · GMT+1',
+    qualification:'BSc Economics · LSE', since:'2015', yearsWith:'11 yrs',
+    languages:['English','Mandarin'], email:'dawson@edlab.co.uk',
+    focus:['Admissions Strategy','Personal Statements','Interview Prep'],
+    bio:'Founder of EDLAB. Fifteen years guiding students into the world’s top universities, now leading admissions strategy across the UK and US. Works directly with a small cohort of Oxbridge and Ivy League applicants each cycle.',
+    stats:{students:'120+', rating:'4.9', sessions:'1,200+', reviews:'86'},
+    edu:[{inst:'London School of Economics', degree:'BSc Economics', level:'Bachelor’s degree', years:'2011 – 2014', verified:true, note:'Graduated with First-Class Honours.'}],
+    work:[
+      {title:'Founder & Owner', org:'EDLAB', dates:'2015 – Present', bullets:['Built EDLAB into a leading admissions-consulting and tutoring firm.','Leads Oxbridge & Ivy League admissions strategy for 40+ students annually, with a 78% offer rate.']},
+      {title:'Research Assistant', org:'University of Cambridge', dates:'2014 – 2015', bullets:['Supported research in probabilistic modelling and high-dimensional statistics.']}
+    ]
+  },
+  {
+    id:'amelia', letter:'A', bg:'#FDE7F1', fg:'#C2266B',
+    name:'Dr. Amelia Chan', role:'Head of Admissions', owner:false, online:true,
+    location:'Oxford, United Kingdom', timezone:'Europe/London · GMT+1',
+    qualification:'PhD Chemistry · Oxford', since:'2017', yearsWith:'9 yrs',
+    languages:['English','Cantonese','Mandarin'], email:'amelia@edlab.co.uk',
+    focus:['Oxbridge Admissions','Chemistry','Interview Prep'],
+    bio:'Head of Admissions at EDLAB, specialising in Oxbridge science applications and interview coaching. Oversees the admissions team and personally mentors science-track applicants through the full UCAS and interview cycle.',
+    stats:{students:'90+', rating:'4.9', sessions:'940', reviews:'71'},
+    edu:[
+      {inst:'University of Oxford', degree:'PhD Chemistry', level:'Doctorate / PhD', years:'2012 – 2016', verified:true, note:'Research in synthetic organic chemistry.'},
+      {inst:'University of Oxford', degree:'MChem Chemistry', level:'Master’s degree', years:'2008 – 2012', verified:true, note:''}
+    ],
+    work:[{title:'Head of Admissions', org:'EDLAB', dates:'2017 – Present', bullets:['Leads the admissions team with an 82% Oxbridge offer rate.','Runs the interview-preparation programme for science applicants.']}]
+  },
+  {
+    id:'marcus', letter:'M', bg:'#E7F6EC', fg:'#15803D',
+    name:'Marcus Lee', role:'Senior Maths Tutor', owner:false, online:false,
+    location:'Manchester, United Kingdom', timezone:'Europe/London · GMT+1',
+    qualification:'MMath Mathematics · Warwick', since:'2020', yearsWith:'6 yrs',
+    languages:['English'], email:'marcus@edlab.co.uk',
+    focus:['A-Level Maths','Further Maths','Physics'],
+    bio:'Senior Maths tutor focused on A-Level and Further Maths, helping students turn exam technique into top grades. Known for STEP and MAT preparation and a calm, structured teaching style.',
+    stats:{students:'140+', rating:'4.8', sessions:'1,600+', reviews:'112'},
+    edu:[{inst:'University of Warwick', degree:'MMath Mathematics', level:'Master’s degree', years:'2015 – 2019', verified:true, note:'First-Class Honours.'}],
+    work:[
+      {title:'Senior Maths Tutor', org:'EDLAB', dates:'2020 – Present', bullets:['Teaches A-Level Mathematics and Further Mathematics to 30+ students a year.','Runs STEP & MAT preparation clinics.']},
+      {title:'Maths Tutor', org:'Private practice', dates:'2019 – 2020', bullets:['Delivered one-to-one GCSE and A-Level tuition.']}
+    ]
+  },
+  {
+    id:'sofia', letter:'S', bg:'#EAF0FE', fg:'#2450C8',
+    name:'Sofia Reyes', role:'Admissions Consultant', owner:false, online:true,
+    location:'Madrid, Spain', timezone:'Europe/Madrid · GMT+2',
+    qualification:'MA International Relations · KCL', since:'2022', yearsWith:'4 yrs',
+    languages:['English','Spanish'], email:'sofia@edlab.co.uk',
+    focus:['US Admissions','Personal Statements','Scholarships'],
+    bio:'Admissions consultant specialising in US applications and scholarship strategy for international students. Guides applicants through the Common App, essays and financial-aid process.',
+    stats:{students:'60+', rating:'4.8', sessions:'520', reviews:'44'},
+    edu:[{inst:'King’s College London', degree:'MA International Relations', level:'Master’s degree', years:'2018 – 2019', verified:true, note:''}],
+    work:[{title:'Admissions Consultant', org:'EDLAB', dates:'2022 – Present', bullets:['Manages a portfolio of international applicants to US universities.','Coaches scholarship and financial-aid applications.']}]
+  },
+  {
+    id:'james', letter:'J', bg:'#F1EAFE', fg:'#6D28D9',
+    name:'James Okafor', role:'Physics & Engineering Tutor', owner:false, online:false,
+    location:'Birmingham, United Kingdom', timezone:'Europe/London · GMT+1',
+    qualification:'MEng Engineering · Imperial', since:'2021', yearsWith:'5 yrs',
+    languages:['English'], email:'james@edlab.co.uk',
+    focus:['A-Level Physics','Engineering Admissions','PAT prep'],
+    bio:'Physics and engineering tutor preparing students for competitive STEM courses. Specialises in the PAT, ESAT and engineering interviews, with a practical, problem-first approach.',
+    stats:{students:'75+', rating:'4.7', sessions:'680', reviews:'53'},
+    edu:[{inst:'Imperial College London', degree:'MEng Mechanical Engineering', level:'Master’s degree', years:'2013 – 2017', verified:true, note:''}],
+    work:[{title:'Physics & Engineering Tutor', org:'EDLAB', dates:'2021 – Present', bullets:['Prepares students for the PAT, ESAT and engineering admissions.','Runs group physics problem-solving sessions.']}]
+  }
+];
+
+/* ---------- Inline icon set (Lucide, MIT) ---------- */
+const P = {
+  'map-pin':'<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
+  crown:'<path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z"/><path d="M5 20h14"/>',
+  mail:'<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
+  send:'<path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/>',
+  'calendar-plus':'<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M12 15v4"/><path d="M10 17h4"/>',
+  briefcase:'<path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/>',
+  'graduation-cap':'<path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/>',
+  award:'<path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"/><circle cx="12" cy="8" r="6"/>',
+  globe:'<circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>',
+  languages:'<path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/>',
+  clock:'<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
+  check:'<path d="M20 6 9 17l-5-5"/>',
+  'badge-check':'<path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/>',
+  star:'<path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.12 2.12 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.12 2.12 0 0 0-.61 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.12 2.12 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.12 2.12 0 0 0-.61-1.879L2.16 9.795a.53.53 0 0 1 .294-.906z"/>',
+  users:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  'building-2':'<path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/>',
+  'chevron-right':'<path d="m9 18 6-6-6-6"/>',
+  'at-sign':'<circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/>',
+  sparkles:'<path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/>',
+  'user-round':'<circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/>'
+};
+function ic(name, cls){
+  return `<svg class="ic ${cls||''}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${P[name]||''}</svg>`;
+}
+
+/* ---------- State ---------- */
+let activeId = TEAM[0].id;
+let query = '';
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+/* ---------- Roster (left) ---------- */
+function renderRoster(){
+  const q = query.trim().toLowerCase();
+  const list = TEAM.filter(m => !q || m.name.toLowerCase().includes(q) || m.role.toLowerCase().includes(q) || m.focus.join(' ').toLowerCase().includes(q));
+  const online = TEAM.filter(m => m.online).length;
+  document.getElementById('rosterCount').innerHTML = `${TEAM.length} members · <b>${online} online</b>`;
+
+  const box = document.getElementById('roster');
+  if(!list.length){
+    box.innerHTML = `<div style="padding:26px 14px;text-align:center;color:var(--ink-400);font-size:13px">No team members match “${esc(query)}”.</div>`;
+    return;
+  }
+  box.innerHTML = list.map(m => `
+    <button class="member ${m.id===activeId?'active':''}" data-id="${m.id}" role="tab" aria-selected="${m.id===activeId}">
+      <span class="ava" style="background:${m.bg};color:${m.fg}">${m.letter}<span class="dot ${m.online?'on':''}"></span></span>
+      <span class="m-main">
+        <span class="m-top">
+          <span class="m-name">${esc(m.name)}</span>
+          ${m.owner?ic('crown','m-crown'):''}
+        </span>
+        <span class="m-role">${esc(m.role)}</span>
+        <span class="m-meta">
+          ${ic('map-pin')}<span>${esc(m.location.split(',')[0])}</span>
+          <span class="sep">·</span><span>${esc(m.focus[0])}</span>
+        </span>
+      </span>
+    </button>`).join('');
+
+  box.querySelectorAll('.member').forEach(b => b.addEventListener('click', () => select(b.dataset.id)));
+}
+
+/* ---------- Detail (right) ---------- */
+function tile(n, label, icon){
+  return `<div class="kpi"><div class="n tnum">${n}</div><div class="l">${ic(icon)}${label}</div></div>`;
+}
+function eduRow(e){
+  return `<div class="row">
+    <span class="r-ic">${ic('graduation-cap')}</span>
+    <div class="r-main">
+      <div class="r-top"><span class="r-title">${esc(e.inst)}</span><span class="r-when">${esc(e.years)}</span></div>
+      <div class="r-sub"><span>${esc(e.degree)}</span>${e.level?`<span class="tag level">${esc(e.level)}</span>`:''}</div>
+      ${e.note?`<div class="r-note">${esc(e.note)}</div>`:''}
+      ${e.verified?`<span class="tag verified" style="margin-top:8px">${ic('badge-check')}Verified</span>`:''}
+    </div>
+  </div>`;
+}
+function workRow(w){
+  return `<div class="row">
+    <span class="r-ic">${ic('briefcase')}</span>
+    <div class="r-main">
+      <div class="r-top"><span class="r-title">${esc(w.title)}</span><span class="r-when">${esc(w.dates)}</span></div>
+      <div class="r-sub"><span>${esc(w.org)}</span></div>
+      <ul class="r-list">${w.bullets.map(b=>`<li>${esc(b)}</li>`).join('')}</ul>
+    </div>
+  </div>`;
+}
+function renderDetail(){
+  const m = TEAM.find(x => x.id === activeId);
+  const presence = m.online
+    ? `<span class="presence on"><span class="pdot"></span>Available now</span>`
+    : `<span class="presence off"><span class="pdot"></span>Offline</span>`;
+
+  document.getElementById('detail').innerHTML = `
+  <div class="swap">
+    <div class="crumb">
+      ${ic('building-2')}<b>EDLAB</b>${ic('chevron-right')}<span>Team</span>${ic('chevron-right')}<span>${esc(m.name)}</span>
+    </div>
+
+    <!-- identity header (no hero) -->
+    <div class="idhead">
+      <div class="big" style="background:${m.bg};color:${m.fg}">${m.letter}</div>
+      <div class="id-body">
+        <div class="id-name-row">
+          <span class="id-name">${esc(m.name)}</span>
+          ${m.owner?`<span class="tag owner">${ic('crown')}Owner</span>`:''}
+        </div>
+        <div class="id-role">${esc(m.role)} · <span class="org">EDLAB</span></div>
+        <div class="id-facts">
+          <span>${ic('award')}${esc(m.qualification)}</span>
+          <span>${ic('map-pin')}${esc(m.location)}</span>
+          ${presence}
+        </div>
+      </div>
+      <div class="id-actions">
+        <button class="btn btn-ghost">${ic('mail')}Message</button>
+        <button class="btn btn-primary">${ic('calendar-plus')}Book a consultation</button>
+      </div>
+    </div>
+
+    <!-- business KPIs -->
+    <div class="kpis">
+      ${tile(m.stats.students,'Students guided','users')}
+      ${tile(m.stats.rating,'Average rating','star')}
+      ${tile(m.stats.sessions,'Sessions delivered','calendar-plus')}
+      ${tile(m.yearsWith,'With EDLAB','clock')}
+    </div>
+
+    <div class="grid">
+      <!-- main column -->
+      <div>
+        <div class="card">
+          <div class="card-h">${ic('user-round')}<span class="l">Professional summary</span></div>
+          <div class="card-b"><p class="summary">${esc(m.bio)}</p></div>
+        </div>
+        <div class="card">
+          <div class="card-h">${ic('sparkles')}<span class="l">Areas of expertise</span></div>
+          <div class="card-b"><div class="chips">${m.focus.map(f=>`<span class="chip">${ic('check')}${esc(f)}</span>`).join('')}</div></div>
+        </div>
+        <div class="card">
+          <div class="card-h">${ic('graduation-cap')}<span class="l">Education &amp; credentials</span></div>
+          <div class="card-b">${m.edu.map(eduRow).join('')}</div>
+        </div>
+        <div class="card">
+          <div class="card-h">${ic('briefcase')}<span class="l">Professional experience</span></div>
+          <div class="card-b">${m.work.map(workRow).join('')}</div>
+        </div>
+      </div>
+
+      <!-- side column -->
+      <div class="side">
+        <div class="card">
+          <div class="card-h">${ic('at-sign')}<span class="l">Contact &amp; booking</span></div>
+          <div class="card-b">
+            <div class="kv">
+              <div class="item">${ic('mail')}<span class="k">Email</span><span class="v">${esc(m.email)}</span></div>
+              <div class="item">${ic('languages')}<span class="k">Languages</span><span class="v">${m.languages.map(esc).join(', ')}</span></div>
+              <div class="item">${ic('clock')}<span class="k">Timezone</span><span class="v">${esc(m.timezone)}</span></div>
+              <div class="item">${ic('calendar-plus')}<span class="k">At EDLAB</span><span class="v">Since ${esc(m.since)}</span></div>
+            </div>
+            <div class="side-cta">
+              <button class="btn btn-primary full">${ic('calendar-plus')}Book a consultation</button>
+              <button class="btn btn-ghost full">${ic('send')}Send a message</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-h">${ic('building-2')}<span class="l">Organization</span></div>
+          <div class="card-b">
+            <div class="org-card">
+              <div class="logo">E</div>
+              <div>
+                <div class="o-name">EDLAB</div>
+                <div class="o-sub">Admissions consulting &amp; elite tutoring</div>
+              </div>
+            </div>
+            <div class="org-meta">
+              <div class="item">${ic('map-pin')}Mayfair, London W1S</div>
+              <div class="item">${ic('globe')}edlab.co.uk</div>
+              <div class="item">${ic('users')}${TEAM.length} team members</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+  document.querySelector('.detail').scrollTop = 0;
+}
+
+/* ---------- Selection ---------- */
+function select(id){
+  if(id === activeId) return;
+  activeId = id;
+  renderRoster();
+  renderDetail();
+}
+
+/* keyboard: up/down through the visible roster */
+document.addEventListener('keydown', e => {
+  if(e.target && e.target.id === 'searchInput') return;
+  if(e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+  const visible = Array.from(document.querySelectorAll('.member')).map(b => b.dataset.id);
+  const i = visible.indexOf(activeId);
+  if(i === -1) return;
+  const next = e.key === 'ArrowDown' ? visible[Math.min(i+1, visible.length-1)] : visible[Math.max(i-1, 0)];
+  if(next){ e.preventDefault(); select(next); }
+});
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  query = e.target.value;
+  renderRoster();
+  // keep a valid selection within the filtered list
+  const visible = Array.from(document.querySelectorAll('.member')).map(b => b.dataset.id);
+  if(visible.length && !visible.includes(activeId)) select(visible[0]);
+});
+
+/* ---------- Boot ---------- */
+renderRoster();
+renderDetail();
+</script>
